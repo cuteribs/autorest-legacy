@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-namespace AutoRest.TypeScript.vanilla.Templates
+namespace AutoRest.Python.vanilla.Templates
 {
 #line 1 "ServiceClientOperationsTemplateAsync.cshtml"
 using AutoRest.Python.vanilla.Templates

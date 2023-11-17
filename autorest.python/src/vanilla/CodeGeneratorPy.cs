@@ -13,6 +13,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Python;
 using AutoRest.Python.Model;
+using AutoRest.Python.vanilla.Templates;
 
 namespace AutoRest.Python
 {

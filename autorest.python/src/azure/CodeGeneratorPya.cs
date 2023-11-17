@@ -12,6 +12,8 @@ using AutoRest.Extensions.Azure;
 using AutoRest.Python.Model;
 using AutoRest.Python.Azure.Model;
 using System.Collections.Generic;
+using AutoRest.Python.azure.Templates;
+using AutoRest.Python.vanilla.Templates;
 
 namespace AutoRest.Python.Azure
 {

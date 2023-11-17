@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" >
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
@@ -8,8 +8,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\autorest.common\src\autorest.common.csproj" />
 	</ItemGroup>
-
-	<PropertyGroup>
+	
+	<!--<PropertyGroup>
 		<RootNamespace>AutoRest.Python</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
@@ -17,6 +17,16 @@
 		<PackageReference Include="dotnet-Perks.CodeGen" Version="2.0.1">
 			<PrivateAssets>All</PrivateAssets>
 		</PackageReference>
+		<DotnetRazor Include="**/*.cshtml" />
 	</ItemGroup>
+	<Target Name="DotnetRazor" BeforeTargets="CoreGenerateAssemblyInfo">
+		<PropertyGroup>
+			<RazorCommand>dotnet Perks.CodeGen</RazorCommand>
+		</PropertyGroup>
+		<Exec Command='$(RazorCommand) "@(DotnetRazor)" ./ $(RootNamespace)' ConsoleToMSBuild="true" StandardOutputImportance="Low">
+			<Output TaskParameter="ConsoleOutput" ItemName="Compile" />
+			<Output TaskParameter="ConsoleOutput" ItemName="FileWrites" />
+		</Exec>
+	</Target>-->
 
 </Project>

@@ -15,4 +15,24 @@
 	  <ProjectReference Include="..\..\autorest.common\src\autorest.common.csproj" />
 	</ItemGroup>
 
+	<!--<PropertyGroup>
+		<RootNamespace>AutoRest.CSharp</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<DotNetCliToolReference Include="dotnet-Perks.CodeGen" Version="2.0.1" />
+		<PackageReference Include="dotnet-Perks.CodeGen" Version="2.0.1">
+			<PrivateAssets>All</PrivateAssets>
+		</PackageReference>
+		<DotnetRazor Include="**/*.cshtml" />
+	</ItemGroup>
+	<Target Name="DotnetRazor" BeforeTargets="CoreGenerateAssemblyInfo">
+		<PropertyGroup>
+			<RazorCommand>dotnet Perks.CodeGen</RazorCommand>
+		</PropertyGroup>
+		<Exec Command='$(RazorCommand) "@(DotnetRazor)" ./ $(RootNamespace)' ConsoleToMSBuild="true" StandardOutputImportance="Low">
+			<Output TaskParameter="ConsoleOutput" ItemName="Compile" />
+			<Output TaskParameter="ConsoleOutput" ItemName="FileWrites" />
+		</Exec>
+	</Target>-->
+	
 </Project>
