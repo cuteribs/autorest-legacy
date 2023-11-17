@@ -4,7 +4,8 @@
   "description": "The Python extension for classic generators in AutoRest.",
   "scripts": {
     "start": "dotnet bin/autorest.python.dll --server",
-    "build": "dotnet publish src -f net6.0 -c Release -o bin"
+    "build": "dotnet publish src -f net6.0 -c Release -o bin",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {},
   "dependencies": {}

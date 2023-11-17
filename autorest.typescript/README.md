@@ -193,9 +193,6 @@ After cloning the repo, execute:
 
 This project uses a git submodule for dependent code. When cloning this repository use `git clone --recursive ...` or perform a `git submodule update --init --recursive` after the project is cloned.
 
-
-
-
 ### Testing the developed changes
 - `gulp regenerate`
 - `gulp test`
