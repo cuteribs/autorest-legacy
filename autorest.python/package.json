@@ -1,0 +1,11 @@
+{
+  "name": "@cuteribs/autorest.python",
+  "version": "4.0.0",
+  "description": "The Python extension for classic generators in AutoRest.",
+  "scripts": {
+    "start": "dotnet bin/autorest.python.dll --server",
+    "build": "dotnet publish src -f net6.0 -c Release -o bin"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
