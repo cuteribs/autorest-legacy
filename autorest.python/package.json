@@ -5,7 +5,7 @@
   "scripts": {
     "start": "dotnet bin/autorest.python.dll --server",
     "build": "dotnet publish src -f net6.0 -c Release -o bin",
-    "publish": "npm publish --access public"
+    "publish": "npm run build && npm publish --access public"
   },
   "devDependencies": {},
   "dependencies": {}

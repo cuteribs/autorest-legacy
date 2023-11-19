@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoRest.Core;
-using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using Microsoft.Perks.JsonRPC;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AutoRest.Modeler
 {
@@ -58,6 +58,21 @@ namespace AutoRest.Modeler
 			fs.WriteAllText(files[0], content);
 
 			var serviceDefinition = SwaggerParser.Parse(fs.ReadAllText(files[0]));
+
+			foreach (var enumSchema in serviceDefinition.Components.Schemas.Values.Where(
+				x => x.Enum?.Count > 0 
+				&& x.Extensions.ContainsKey(Core.Model.XmsExtensions.Metadata.Name)
+				&& !x.Extensions.ContainsKey(Core.Model.XmsExtensions.Enum.Name)
+			))
+			{
+				var metadata = enumSchema.Extensions[Core.Model.XmsExtensions.Metadata.Name] as JObject;
+				var extension = new JObject(
+					new JProperty("name", metadata["name"]), 
+					new JProperty("modelAsString", false)
+				);
+				enumSchema.Extensions.Add(Core.Model.XmsExtensions.Enum.Name, extension);
+			}
+
 			var modeler = new SwaggerModeler(settings, true == await GetValue<bool?>("generate-empty-classes"));
 			var codeModel = modeler.Build(serviceDefinition);
 
