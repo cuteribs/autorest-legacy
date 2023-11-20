@@ -11,10 +11,17 @@ namespace @Settings.Namespace
     @:using @usingString;
 }
 @EmptyLine
-    /// <summary>
+/// <summary>
     @WrapComment("/// ", Model.Documentation.EscapeXmlComment())
     /// </summary>
-    public partial interface I@(Model.Name) : AutoRest.ApiClients.Common.IApiClient, System.IDisposable
+    @if (@Settings.InterfaceFullName != null)
+    {
+    @:public partial interface I@(Model.Name) : @Settings.InterfaceFullName, System.IDisposable
+    }
+    else
+    {
+    @:public partial interface I@(Model.Name) : System.IDisposable
+    }
     {
         /// <summary>
         /// The base URI of the service.

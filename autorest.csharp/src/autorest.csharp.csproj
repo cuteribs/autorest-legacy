@@ -3,6 +3,7 @@
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<Version Condition="$(Version) == ''">$(BUILD_VERSION)</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

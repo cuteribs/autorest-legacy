@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
+		<Version Condition="$(Version) == ''">$(BUILD_VERSION)</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>

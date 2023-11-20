@@ -1,11 +1,14 @@
 using AutoRest.Core;
 using AutoRest.Core.Utilities;
+using AutoRest.Modeler.Model;
 using Microsoft.Perks.JsonRPC;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -59,19 +62,8 @@ namespace AutoRest.Modeler
 
 			var serviceDefinition = SwaggerParser.Parse(fs.ReadAllText(files[0]));
 
-			foreach (var enumSchema in serviceDefinition.Components.Schemas.Values.Where(
-				x => x.Enum?.Count > 0 
-				&& x.Extensions.ContainsKey(Core.Model.XmsExtensions.Metadata.Name)
-				&& !x.Extensions.ContainsKey(Core.Model.XmsExtensions.Enum.Name)
-			))
-			{
-				var metadata = enumSchema.Extensions[Core.Model.XmsExtensions.Metadata.Name] as JObject;
-				var extension = new JObject(
-					new JProperty("name", metadata["name"]), 
-					new JProperty("modelAsString", false)
-				);
-				enumSchema.Extensions.Add(Core.Model.XmsExtensions.Enum.Name, extension);
-			}
+			EnumFix(serviceDefinition.Components.Schemas.Values);
+			ResponseFix(serviceDefinition.Paths.Values.SelectMany(x => x.Values));
 
 			var modeler = new SwaggerModeler(settings, true == await GetValue<bool?>("generate-empty-classes"));
 			var codeModel = modeler.Build(serviceDefinition);
@@ -87,6 +79,37 @@ namespace AutoRest.Modeler
 			WriteFile("code-model-v1.yaml", modelAsJson, null);
 
 			return true;
+
+			static void EnumFix(IEnumerable<Model.Schema> schemas)
+			{
+				foreach (var enumSchema in schemas.Where(
+					x => x.Enum?.Count > 0
+					&& x.Extensions.ContainsKey(Core.Model.XmsExtensions.Metadata.Name)
+					&& !x.Extensions.ContainsKey(Core.Model.XmsExtensions.Enum.Name)
+				))
+				{
+					var metadata = enumSchema.Extensions[Core.Model.XmsExtensions.Metadata.Name] as JObject;
+					var extension = new JObject(
+						new JProperty("name", metadata["name"]),
+						new JProperty("modelAsString", false)
+					);
+					enumSchema.Extensions.Add(Core.Model.XmsExtensions.Enum.Name, extension);
+				}
+			}
+
+			static void ResponseFix(IEnumerable<Model.Operation> operations)
+			{
+				// keep only the first response
+				foreach (var operation in operations)
+				{
+					if (operation.Responses.Count > 1)
+					{
+						var first = operation.Responses.First();
+						operation.Responses.Clear();
+						operation.Responses.Add(first.Key, first.Value);
+					}
+				}
+			}
 		}
 	}
 }

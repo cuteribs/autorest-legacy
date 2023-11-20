@@ -100,10 +100,11 @@ namespace AutoRest.CSharp
 
                 // build settings
                 var altNamespace = (await GetValue<string[]>("input-file") ?? new[] { "" }).FirstOrDefault()?.Split('/').Last().Split('\\').Last().Split('.').First();
-                
+
                 new Settings
                 {
                     Namespace = await GetValue("namespace"),
+                    InterfaceFullName = await GetValue("interface"),
                     ClientName = GetXmsCodeGenSetting<string>(codeModelT, "name") ?? await GetValue("override-client-name"),
                     PayloadFlatteningThreshold = GetXmsCodeGenSetting<int?>(codeModelT, "ft") ?? await GetValue<int?>("payload-flattening-threshold") ?? 0,
                     AddCredentials = await GetValue<bool?>("add-credentials") ?? false,

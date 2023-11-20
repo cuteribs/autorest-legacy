@@ -138,6 +138,11 @@ Licensed under the MIT License.
         /// </summary>
         public string CodeGenerator { get; set; }
 
+		/// <summary>
+		/// Gets or sets a base interface for generated API Client.
+		/// </summary>
+		public string InterfaceFullName { get; set; }
+
         #endregion
 
         /// <summary>
