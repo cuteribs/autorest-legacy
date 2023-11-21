@@ -15,7 +15,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\autorest.common\src\autorest.common.csproj" />
 	</ItemGroup>
-
+	
 	<!--<PropertyGroup>
 		<RootNamespace>AutoRest.CSharp</RootNamespace>
 	</PropertyGroup>

@@ -4,7 +4,7 @@
   "description": "The typescript extension for classic generators in AutoRest.",
   "scripts": {
     "start": "dotnet bin/autorest.typescript.dll --server",
-    "build": "dotnet publish src -f net6.0 -c Release -o bin",
+    "build": "dotnet publish src -f net6.0 -c Release -o bin -p:Version=$(npm pkg get version)",
     "publish": "npm run build && npm publish --access public"
   },
   "devDependencies": {},

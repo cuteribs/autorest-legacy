@@ -214,6 +214,12 @@ if (Model.IsCustomBaseUri)
 
 #line default
 #line hidden
+            WriteLiteral(".HttpClient.BaseAddress ?? ");
+#line 56 "MethodBodyTemplateRestCall.cshtml"
+                                                                Write(Model.ClientReference);
+
+#line default
+#line hidden
             WriteLiteral(".BaseUri;\nvar _url = _baseUrl + (_baseUrl.EndsWith(\"/\") ? \"\" : \"/\") + \"");
 #line 57 "MethodBodyTemplateRestCall.cshtml"
                                                            Write(Model.Url.TrimStart('/'));
@@ -232,6 +238,12 @@ else
             WriteLiteral("var _baseUrl = ");
 #line 61 "MethodBodyTemplateRestCall.cshtml"
              Write(Model.ClientReference);
+
+#line default
+#line hidden
+            WriteLiteral(".HttpClient.BaseAddress ?? ");
+#line 61 "MethodBodyTemplateRestCall.cshtml"
+                                                                Write(Model.ClientReference);
 
 #line default
 #line hidden
