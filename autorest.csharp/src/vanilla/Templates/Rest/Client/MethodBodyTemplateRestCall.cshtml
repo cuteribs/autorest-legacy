@@ -58,7 +58,7 @@ if (Model.IsCustomBaseUri)
 }
 else
 {
-@:var _baseUrl = @(Model.ClientReference).HttpClient.BaseAddress.AbsoluteUri; ?? @(Model.ClientReference).BaseUri.AbsoluteUri;
+@:var _baseUrl = @(Model.ClientReference).HttpClient.BaseAddress.AbsoluteUri ?? @(Model.ClientReference).BaseUri.AbsoluteUri;
 @:var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "@(Model.Url.TrimStart('/'))").ToString();
 }    
 }
