@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript.Model
                         return "number";
 
                     case KnownPrimaryType.Stream:
-                        return "coreHttp.HttpRequestBody";
+                        return "msRest.HttpRequestBody";
 
                     case KnownPrimaryType.String:
                     case KnownPrimaryType.Uuid:
@@ -58,7 +58,7 @@ namespace AutoRest.TypeScript.Model
                         return "Object";
 
                     case KnownPrimaryType.Credentials:
-                        return "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials";
+                        return "msRest.ServiceClientCredentials";
                 }
                 throw new NotImplementedException($"Primary type {KnownPrimaryType} is not implemented in {GetType().Name}");
             }

@@ -21,6 +21,12 @@ using AutoRest.Core.Utilities
 #line default
 #line hidden
     ;
+#line 4 "ServiceClientContextTemplate.cshtml"
+using AutoRest.TypeScript.Utilities
+
+#line default
+#line hidden
+    ;
     using System.Threading.Tasks;
 
     public class ServiceClientContextTemplate : AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
@@ -33,20 +39,19 @@ using AutoRest.Core.Utilities
         #pragma warning disable 1998
         public override async Task ExecuteAsync()
         {
-            WriteLiteral("/*\n");
 #line 6 "ServiceClientContextTemplate.cshtml"
-Write(Header(" * "));
+Write(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns));
 
 #line default
 #line hidden
-            WriteLiteral("\n */\n");
-#line 8 "ServiceClientContextTemplate.cshtml"
+            WriteLiteral("\n");
+#line 7 "ServiceClientContextTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral("\nimport * as coreHttp from \"@azure/core-http\";\n");
-#line 10 "ServiceClientContextTemplate.cshtml"
+            WriteLiteral("\nimport * as msRest from \"@azure/ms-rest-js\";\n");
+#line 9 "ServiceClientContextTemplate.cshtml"
   
 bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "ServiceClientOptions";
 if (usesCustomOptionsType)
@@ -56,61 +61,61 @@ if (usesCustomOptionsType)
 #line hidden
 
             WriteLiteral("import * as Models from \"./models\";\n");
-#line 15 "ServiceClientContextTemplate.cshtml"
+#line 14 "ServiceClientContextTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 17 "ServiceClientContextTemplate.cshtml"
+#line 16 "ServiceClientContextTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\nconst packageName = \"");
-#line 19 "ServiceClientContextTemplate.cshtml"
+#line 18 "ServiceClientContextTemplate.cshtml"
                 Write(Model.Settings.PackageName);
 
 #line default
 #line hidden
             WriteLiteral("\";\nconst packageVersion = \"");
-#line 20 "ServiceClientContextTemplate.cshtml"
+#line 19 "ServiceClientContextTemplate.cshtml"
                    Write(Model.Settings.PackageVersion);
 
 #line default
 #line hidden
             WriteLiteral("\";\n");
-#line 21 "ServiceClientContextTemplate.cshtml"
+#line 20 "ServiceClientContextTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\nexport class ");
-#line 22 "ServiceClientContextTemplate.cshtml"
+#line 21 "ServiceClientContextTemplate.cshtml"
          Write(Model.ContextName);
 
 #line default
 #line hidden
-            WriteLiteral(" extends coreHttp.ServiceClient {\n  ");
-#line 23 "ServiceClientContextTemplate.cshtml"
+            WriteLiteral(" extends msRest.ServiceClient {\n  ");
+#line 22 "ServiceClientContextTemplate.cshtml"
 Write(Model.GenerateClassProperties(EmptyLine));
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 24 "ServiceClientContextTemplate.cshtml"
+#line 23 "ServiceClientContextTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n  ");
-#line 25 "ServiceClientContextTemplate.cshtml"
+#line 24 "ServiceClientContextTemplate.cshtml"
 Write(Model.GenerateConstructorComment(Model.ContextName));
 
 #line default
 #line hidden
             WriteLiteral("\n  ");
-#line 26 "ServiceClientContextTemplate.cshtml"
+#line 25 "ServiceClientContextTemplate.cshtml"
 Write(Model.GenerateContextConstructor(@EmptyLine));
 
 #line default

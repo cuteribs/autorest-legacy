@@ -1,12 +1,11 @@
 ﻿@using System.Linq
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
+@using AutoRest.TypeScript.Utilities
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
-/*
-@Header(" * ")
- */
+@(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns))
 @EmptyLine
-import * as coreHttp from "@@azure/core-http";
+import * as msRest from "@@azure/ms-rest-js";
 @{
 bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "ServiceClientOptions";
 if (usesCustomOptionsType)
@@ -19,7 +18,7 @@ if (usesCustomOptionsType)
 const packageName = "@Model.Settings.PackageName";
 const packageVersion = "@Model.Settings.PackageVersion";
 @EmptyLine
-export class @(Model.ContextName) extends coreHttp.ServiceClient {
+export class @(Model.ContextName) extends msRest.ServiceClient {
   @(Model.GenerateClassProperties(EmptyLine))
 @EmptyLine
   @(Model.GenerateConstructorComment(Model.ContextName))

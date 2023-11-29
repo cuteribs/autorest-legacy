@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.python", "autorest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.typescript", "autorest.typescript\src\autorest.typescript.csproj", "{3032F53B-96F1-498F-A819-2FB368B13124}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{3D2801A2-B85C-4B38-833C-80B0579AD218}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3032F53B-96F1-498F-A819-2FB368B13124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3032F53B-96F1-498F-A819-2FB368B13124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3032F53B-96F1-498F-A819-2FB368B13124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2801A2-B85C-4B38-833C-80B0579AD218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2801A2-B85C-4B38-833C-80B0579AD218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2801A2-B85C-4B38-833C-80B0579AD218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2801A2-B85C-4B38-833C-80B0579AD218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

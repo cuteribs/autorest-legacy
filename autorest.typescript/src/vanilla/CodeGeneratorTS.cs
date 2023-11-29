@@ -19,7 +19,9 @@ namespace AutoRest.TypeScript
     {
         private const string ClientRuntimePackage = "@azure/ms-rest-js version 1.8.1";
 
+
         public override string ImplementationFileExtension => ".ts";
+
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} or higher npm package is required to execute the generated code.";
 
@@ -28,9 +30,10 @@ namespace AutoRest.TypeScript
         /// </summary>
         /// <param name="serviceClient"></param>
         /// <returns></returns>
-        public override Task Generate(CodeModel codeModel)
+        public override async Task Generate(CodeModel codeModel)
         {
-            return Generate(new VanillaTemplateFactory(), (CodeModelTS)codeModel);
+            CodeModelTS codeModelTS = (CodeModelTS)codeModel;
+			await Generate(new VanillaTemplateFactory(), codeModelTS);
 		}
 
         protected async Task Generate<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS

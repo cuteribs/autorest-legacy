@@ -14,7 +14,7 @@ using IAnyPlugin = AutoRest.Core.Extensibility.IPlugin<AutoRest.Core.Extensibili
 
 namespace AutoRest.TypeScript
 {
-    public class Program : NewPlugin
+	public class Program : NewPlugin
     {
         public static int Main(string[] args )
         {
@@ -70,8 +70,7 @@ namespace AutoRest.TypeScript
 
             await InitializeCustomSettings(codeModelT);
 
-            var plugin = CreatePlugin();
-
+            IAnyPlugin plugin = await CreatePlugin();
             using (plugin.Activate())
             {
                 await InitializeNamespace();
@@ -160,10 +159,12 @@ namespace AutoRest.TypeScript
             }
         }
 
-        private static IAnyPlugin CreatePlugin()
+        private async Task<IAnyPlugin> CreatePlugin()
         {
-            var plugin = new PluginTS();
+            bool? azureArm = await GetValue<bool?>("azure-arm");
+            IAnyPlugin plugin = new PluginTS();
 			Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
+
             return plugin;
         }
 
