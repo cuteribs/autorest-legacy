@@ -38,12 +38,12 @@ namespace AutoRest.TypeScript
                 switch (known.KnownPrimaryType)
                 {
                     case KnownPrimaryType.Date:
-                        return $"coreHttp.serializeObject({reference}).replace(/[Tt].*[Zz]/, '')";
+                        return $"msRest.serializeObject({reference}).replace(/[Tt].*[Zz]/, '')";
                     case KnownPrimaryType.DateTimeRfc1123:
                         return $"{reference} instanceof Date ? {reference}.toUTCString() : {reference}";
                     case KnownPrimaryType.DateTime:
                     case KnownPrimaryType.ByteArray:
-                        return $"coreHttp.serializeObject({reference})";
+                        return $"msRest.serializeObject({reference})";
                     case KnownPrimaryType.TimeSpan:
                         return $"{reference}";
                     case KnownPrimaryType.Base64Url:
@@ -83,12 +83,13 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.ByteArray || primary.KnownPrimaryType == KnownPrimaryType.Base64Url)
                 return "Uint8Array";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)
-                return "coreHttp.HttpRequestBody";
+                return "msRest.HttpRequestBody";
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
                 return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)
-                return "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials";
-            else {
+                return "msRest.ServiceClientCredentials"; //TODO: test this, add include for it
+            else
+            {
                 throw new NotImplementedException($"Type '{primary}' not implemented");
             }
         }
@@ -120,7 +121,8 @@ namespace AutoRest.TypeScript
         /// <param name="type">IType to query</param>
         /// <param name="inModelsModule">Pass true if generating the code for the models module, thus model types don't need a "models." prefix</param>
         /// <returns>TypeScript type string for type</returns>
-        public static string TSType(this IModelType type, bool inModelsModule) {
+        public static string TSType(this IModelType type, bool inModelsModule)
+        {
             CompositeTypeTS composite = type as CompositeTypeTS;
             SequenceType sequence = type as SequenceType;
             DictionaryType dictionary = type as DictionaryType;
@@ -146,10 +148,10 @@ namespace AutoRest.TypeScript
             }
             else if (composite != null)
             {
-                // ServiceClientCredentials starts with the "coreHttp." prefix, so strip coreHttp./coreArm. as we import those
+                // ServiceClientCredentials starts with the "msRest." prefix, so strip msRest./msRestAzure. as we import those
                 // types with no module prefix needed
                 var compositeName = composite.UnionTypeName;
-                if (compositeName.StartsWith("coreHttp.") || compositeName.StartsWith("coreArm."))
+                if (compositeName.StartsWith("msRest.") || compositeName.StartsWith("msRestAzure."))
                     tsType = compositeName.Substring(compositeName.IndexOf('.') + 1);
                 else if (inModelsModule || compositeName.Contains('.'))
                     tsType = compositeName;
@@ -206,7 +208,7 @@ namespace AutoRest.TypeScript
         public static string CreateSerializerExpression(this CodeModelTS codeModel)
         {
             TSBuilder builder = new TSBuilder();
-            builder.FunctionCall("new coreHttp.Serializer", arguments =>
+            builder.FunctionCall("new msRest.Serializer", arguments =>
             {
                 bool hasMappers = codeModel.HasMappers();
                 if (hasMappers)
@@ -428,12 +430,12 @@ namespace AutoRest.TypeScript
 
             void applyConstraints(TSObject obj)
             {
-                bool useClientSideValidation = (bool) (Settings.Instance?.CustomSettings[CodeModelTS.ClientSideValidationSettingName] ?? false);
+                bool useClientSideValidation = (bool)(Settings.Instance?.CustomSettings[CodeModelTS.ClientSideValidationSettingName] ?? false);
                 if (useClientSideValidation && constraints != null && constraints.Any())
                 {
                     obj.ObjectProperty("constraints", constraintsObject =>
                     {
-                        foreach (KeyValuePair<Constraint,string> constraintEntry in constraints)
+                        foreach (KeyValuePair<Constraint, string> constraintEntry in constraints)
                         {
                             Constraint constraint = constraintEntry.Key;
                             string constraintValue = constraintEntry.Value;
@@ -537,6 +539,7 @@ namespace AutoRest.TypeScript
                 {
                     if (expandComposite)
                     {
+                        CompositeType baseType = GetUberParent(composite);
                         if (composite.IsPolymorphic)
                         {
                             // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
@@ -549,16 +552,13 @@ namespace AutoRest.TypeScript
                                 polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
                                 polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
                             });
-                            typeObject.QuotedStringProperty("uberParent", composite.Name);
+                            // uber parent is always the base type, if there exists one
+                            typeObject.QuotedStringProperty("uberParent", baseType.Name);
                         }
-                        else
+                        else if (baseType.IsPolymorphic)
                         {
-                            CompositeType baseType = GetUberParent(composite);
-                            if (baseType.IsPolymorphic)
-                            {
-                                typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
-                                typeObject.QuotedStringProperty("uberParent", baseType.Name);
-                            }
+                            typeObject.TextProperty("polymorphicDiscriminator", baseType.Name + ".type.polymorphicDiscriminator");
+                            typeObject.QuotedStringProperty("uberParent", baseType.Name);
                         }
                     }
 
@@ -615,7 +615,7 @@ namespace AutoRest.TypeScript
                         CompositeTypeTS baseType = composite;
                         while (true)
                         {
-                            baseType = (CompositeTypeTS) baseType.BaseModelType;
+                            baseType = (CompositeTypeTS)baseType.BaseModelType;
                             if (baseType == null)
                             {
                                 break;
@@ -634,6 +634,7 @@ namespace AutoRest.TypeScript
                 throw new NotImplementedException($"{type} is not a supported Type.");
             }
         }
+
 
         /// <summary>
         /// Finds the UberParent for a given Composite type.

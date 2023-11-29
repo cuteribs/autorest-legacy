@@ -33,7 +33,7 @@ namespace AutoRest.TypeScript
         public override async Task Generate(CodeModel codeModel)
         {
             CodeModelTS codeModelTS = (CodeModelTS)codeModel;
-            await Generate(new VanillaTemplateFactory(), codeModelTS);
+			await Generate(new VanillaTemplateFactory(), codeModelTS);
 		}
 
         protected async Task Generate<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS

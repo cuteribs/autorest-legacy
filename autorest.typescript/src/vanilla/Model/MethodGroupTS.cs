@@ -4,6 +4,7 @@
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,7 @@ namespace AutoRest.TypeScript.Model
             {
                 string compositeName = composite.Name;
                 // Some services define a property of CloudError named CloudErrorBody, but we don't
-                // have a mapper for that in @azure/core-arm. In @azure/core-arm we
+                // have a mapper for that in @azure/ms-rest-azure-js. In @azure/ms-rest-azure-js we
                 // only have a mapper for CloudError that contains all of the information that is
                 // contained by CloudErrorBody. Because of that, we can safely ignore CloudErrorBody.
                 if (!closure.Contains(compositeName) && compositeName != "CloudErrorBody")
@@ -169,10 +170,10 @@ namespace AutoRest.TypeScript.Model
         {
             TSBuilder builder = new TSBuilder();
 
-            builder.ImportAllAs("coreHttp", "@azure/core-http");
+            builder.ImportAllAs("msRest", "@azure/ms-rest-js");
             if (MethodTemplateModels.Any((MethodTS method) => method.IsLongRunningOperation))
             {
-                builder.ImportAllAs("coreArm", "@azure/core-arm");
+                builder.ImportAllAs("msRestAzure", "@azure/ms-rest-azure-js");
             }
 
             CodeModelTS codeModel = CodeModelTS;
@@ -202,7 +203,7 @@ namespace AutoRest.TypeScript.Model
         public string GenerateMappers()
         {
             TSBuilder builder = new TSBuilder();
-            builder.Comment(AutoRest.Core.Settings.Instance.Header);
+            builder.Line(LicenseHeader.GenerateLicenseHeader());
             builder.Line();
             builder.Line("export {");
             builder.Indent(() =>

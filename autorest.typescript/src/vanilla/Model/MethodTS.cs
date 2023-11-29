@@ -44,8 +44,8 @@ namespace AutoRest.TypeScript.Model
             HttpOperationResponse
         }
 
-        private const string baseResponseName = "coreHttp.RestResponse";
-        private const string baseRawResponseName = "coreHttp.HttpResponse";
+        private const string baseResponseName = "msRest.RestResponse";
+        private const string baseRawResponseName = "msRest.HttpResponse";
 
         private string httpResponseName;
         public string HttpResponseName
@@ -204,7 +204,7 @@ namespace AutoRest.TypeScript.Model
                 string optionsParameterType;
                 if (OptionsParameterModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))
                 {
-                    optionsParameterType = "coreHttp.RequestOptionsBase";
+                    optionsParameterType = "msRest.RequestOptionsBase";
                 }
                 else
                 {
@@ -252,7 +252,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     parameters.Append(", ");
                 }
-                parameters.Append("callback: coreHttp.ServiceCallback<" + ReturnTypeTSString + ">");
+                parameters.Append("callback: msRest.ServiceCallback<" + ReturnTypeTSString + ">");
             }
             return parameters.ToString();
         }
@@ -513,7 +513,7 @@ namespace AutoRest.TypeScript.Model
             {
                 if (requestParameter.CollectionFormat != CollectionFormat.None)
                 {
-                    parameterObject.TextProperty("collectionFormat", $"coreHttp.QueryCollectionFormat.{requestParameter.CollectionFormat}");
+                    parameterObject.TextProperty("collectionFormat", $"msRest.QueryCollectionFormat.{requestParameter.CollectionFormat}");
                 }
             }
         }
@@ -703,7 +703,7 @@ namespace AutoRest.TypeScript.Model
 
         public void GenerateOperationSpecDefinition(TSBuilder builder)
         {
-            builder.ConstObjectVariable(GetOperationSpecVariableName(), "coreHttp.OperationSpec", GenerateOperationSpec);
+            builder.ConstObjectVariable(GetOperationSpecVariableName(), "msRest.OperationSpec", GenerateOperationSpec);
         }
 
         protected string GetOperationSpecVariableName()
@@ -747,7 +747,7 @@ namespace AutoRest.TypeScript.Model
             string optionsParameterType;
             if (OptionsParameterModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))
             {
-                optionsParameterType = "coreHttp.RequestOptionsBase";
+                optionsParameterType = "msRest.RequestOptionsBase";
             }
             else
             {
@@ -758,7 +758,7 @@ namespace AutoRest.TypeScript.Model
 
         protected TSParameter GetCallbackParameter(bool required)
         {
-            return new TSParameter("callback", $"coreHttp.ServiceCallback<{ReturnTypeTSString}>", "The callback", required);
+            return new TSParameter("callback", $"msRest.ServiceCallback<{ReturnTypeTSString}>", "The callback", required);
         }
 
         public virtual void Generate(TSClass tsClass)

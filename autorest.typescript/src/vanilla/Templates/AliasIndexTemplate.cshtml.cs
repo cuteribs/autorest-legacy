@@ -14,6 +14,12 @@ using AutoRest.TypeScript
 #line default
 #line hidden
     ;
+#line 3 "AliasIndexTemplate.cshtml"
+using AutoRest.TypeScript.Utilities
+
+#line default
+#line hidden
+    ;
     using System.Threading.Tasks;
 
     public class AliasIndexTemplate : AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
@@ -26,8 +32,13 @@ using AutoRest.TypeScript
         #pragma warning disable 1998
         public override async Task ExecuteAsync()
         {
-            WriteLiteral("export * from \"");
-#line 4 "AliasIndexTemplate.cshtml"
+#line 5 "AliasIndexTemplate.cshtml"
+Write(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns));
+
+#line default
+#line hidden
+            WriteLiteral("\nexport * from \"");
+#line 6 "AliasIndexTemplate.cshtml"
            Write(Model.Settings.AliasedNpmPackageName);
 
 #line default

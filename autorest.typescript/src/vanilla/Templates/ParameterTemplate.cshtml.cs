@@ -21,6 +21,12 @@ using AutoRest.TypeScript.vanilla.Templates
 #line default
 #line hidden
     ;
+#line 4 "ParameterTemplate.cshtml"
+using AutoRest.TypeScript.Utilities
+
+#line default
+#line hidden
+    ;
     using System.Threading.Tasks;
 
     public class ParameterTemplate : AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
@@ -33,19 +39,25 @@ using AutoRest.TypeScript.vanilla.Templates
         #pragma warning disable 1998
         public override async Task ExecuteAsync()
         {
-#line 5 "ParameterTemplate.cshtml"
+#line 6 "ParameterTemplate.cshtml"
+Write(LicenseHeader.GenerateLicenseHeader(AutoRest.Core.Settings.DefaultMaximumCommentColumns));
+
+#line default
+#line hidden
+            WriteLiteral("\n");
+#line 7 "ParameterTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\nimport * as msRest from \"@azure/ms-rest-js\";\n");
-#line 8 "ParameterTemplate.cshtml"
+#line 10 "ParameterTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\n");
-#line 10 "ParameterTemplate.cshtml"
+#line 12 "ParameterTemplate.cshtml"
 Write(Model.GenerateParameterMappers());
 
 #line default
