@@ -1,35 +1,19 @@
+using AutoRest.Core;
+using AutoRest.Core.Model;
+using AutoRest.Core.Parsing;
+using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.Model;
+using Microsoft.Perks.JsonRPC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using AutoRest.Core;
-using AutoRest.Core.Extensibility;
-using AutoRest.Core.Logging;
-using AutoRest.Core.Model;
-using AutoRest.Core.Parsing;
-using AutoRest.Core.Utilities;
-using AutoRest.TypeScript.Azure;
-using AutoRest.TypeScript.Model;
-using Microsoft.Perks.JsonRPC;
 using static AutoRest.Core.Utilities.DependencyInjection;
 using IAnyPlugin = AutoRest.Core.Extensibility.IPlugin<AutoRest.Core.Extensibility.IGeneratorSettings, AutoRest.Core.IModelSerializer<AutoRest.Core.Model.CodeModel>, AutoRest.Core.ITransformer<AutoRest.Core.Model.CodeModel>, AutoRest.Core.CodeGenerator, AutoRest.Core.CodeNamer, AutoRest.Core.Model.CodeModel>;
 
 namespace AutoRest.TypeScript
 {
-    public static class ExtensionsLoader
-    {
-        public static IAnyPlugin GetPlugin(string name)
-        {
-            switch (name)
-            {
-                case "TypeScript": return new AutoRest.TypeScript.PluginTS();
-                case "Azure.TypeScript": return new AutoRest.TypeScript.Azure.PluginTSa();
-            }
-            throw new Exception("Unknown plugin: " + name);
-        }
-    }
-
     public class Program : NewPlugin
     {
         public static int Main(string[] args )
@@ -178,17 +162,9 @@ namespace AutoRest.TypeScript
         private async Task<IAnyPlugin> CreatePlugin()
         {
             bool? azureArm = await GetValue<bool?>("azure-arm");
-            IAnyPlugin plugin;
-            if (azureArm == true)
-            {
-                plugin = new PluginTSa();
-            }
-            else
-            {
-                plugin = new PluginTS();
-            }
+            IAnyPlugin plugin = new PluginTS();
 
-            Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
+			Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
 
             return plugin;
         }

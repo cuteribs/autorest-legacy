@@ -8,6 +8,12 @@ using AutoRest.Core.Utilities;
 
 #line default
 #line hidden
+#line 2 "AliasIndexTemplate.cshtml"
+using AutoRest.TypeScript
+
+#line default
+#line hidden
+    ;
     using System.Threading.Tasks;
 
     public class AliasIndexTemplate : AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
@@ -20,14 +26,8 @@ using AutoRest.Core.Utilities;
         #pragma warning disable 1998
         public override async Task ExecuteAsync()
         {
-            WriteLiteral("/*\n");
+            WriteLiteral("export * from \"");
 #line 4 "AliasIndexTemplate.cshtml"
-Write(Header(" * "));
-
-#line default
-#line hidden
-            WriteLiteral("\n */\nexport * from \"");
-#line 6 "AliasIndexTemplate.cshtml"
            Write(Model.Settings.AliasedNpmPackageName);
 
 #line default

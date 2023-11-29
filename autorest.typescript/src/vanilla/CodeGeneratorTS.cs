@@ -5,7 +5,6 @@
 using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
-using AutoRest.TypeScript.Azure.Model;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
 using AutoRest.TypeScript.vanilla.Templates;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace AutoRest.TypeScript
 {
-    public class CodeGeneratorTS : CodeGenerator
+	public class CodeGeneratorTS : CodeGenerator
     {
         private const string ClientRuntimePackage = "@azure/ms-rest-js version 1.8.1";
 
@@ -34,15 +33,8 @@ namespace AutoRest.TypeScript
         public override async Task Generate(CodeModel codeModel)
         {
             CodeModelTS codeModelTS = (CodeModelTS)codeModel;
-            if (codeModelTS.Settings.AzureArm == true)
-            {
-                await Generate(new AzureTemplateFactory(), (CodeModelTSa)codeModelTS);
-            }
-            else
-            {
-                await Generate(new VanillaTemplateFactory(), codeModelTS);
-            }
-        }
+            await Generate(new VanillaTemplateFactory(), codeModelTS);
+		}
 
         protected async Task Generate<TCodeModel>(TemplateFactory<TCodeModel> templateFactory, TCodeModel codeModel) where TCodeModel : CodeModelTS
         {

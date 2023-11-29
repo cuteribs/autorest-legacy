@@ -27,20 +27,13 @@ using AutoRest.Core.Utilities
         #pragma warning disable 1998
         public override async Task ExecuteAsync()
         {
-            WriteLiteral("/*\r\n");
-#line 5 "MethodGroupIndexTemplate.cshtml"
-Write(Header(" * "));
-
-#line default
-#line hidden
-            WriteLiteral("\r\n */\r\n");
-#line 7 "MethodGroupIndexTemplate.cshtml"
+#line 4 "MethodGroupIndexTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\r\n");
-#line 8 "MethodGroupIndexTemplate.cshtml"
+#line 5 "MethodGroupIndexTemplate.cshtml"
  foreach (var methodGroup in Model.MethodGroupModels)
 {
 
@@ -48,13 +41,13 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("export * from \"./");
-#line 10 "MethodGroupIndexTemplate.cshtml"
+#line 7 "MethodGroupIndexTemplate.cshtml"
                Write(methodGroup.TypeName.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\";\r\n");
-#line 11 "MethodGroupIndexTemplate.cshtml"
+#line 8 "MethodGroupIndexTemplate.cshtml"
 }
 
 #line default

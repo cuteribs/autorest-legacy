@@ -21,90 +21,84 @@ using AutoRest.TypeScript
         #pragma warning disable 1998
         public override async Task ExecuteAsync()
         {
-            WriteLiteral("/*\n");
-#line 4 "MethodGroupTemplate.cshtml"
-Write(Header(" * "));
-
-#line default
-#line hidden
-            WriteLiteral("\n */\n");
-#line 6 "MethodGroupTemplate.cshtml"
+#line 3 "MethodGroupTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 7 "MethodGroupTemplate.cshtml"
+#line 4 "MethodGroupTemplate.cshtml"
 Write(Model.GenerateMethodGroupImports());
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 8 "MethodGroupTemplate.cshtml"
+#line 5 "MethodGroupTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n/** Class representing a ");
-#line 9 "MethodGroupTemplate.cshtml"
+#line 6 "MethodGroupTemplate.cshtml"
                      Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral(". */\nexport class ");
-#line 10 "MethodGroupTemplate.cshtml"
+#line 7 "MethodGroupTemplate.cshtml"
          Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral(" {\n  private readonly client: ");
-#line 11 "MethodGroupTemplate.cshtml"
+#line 8 "MethodGroupTemplate.cshtml"
                        Write(Model.CodeModelTS.ContextName);
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 12 "MethodGroupTemplate.cshtml"
+#line 9 "MethodGroupTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n  /**\n   * Create a ");
-#line 14 "MethodGroupTemplate.cshtml"
+#line 11 "MethodGroupTemplate.cshtml"
          Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral(".\n   * @param {");
-#line 15 "MethodGroupTemplate.cshtml"
+#line 12 "MethodGroupTemplate.cshtml"
          Write(Model.CodeModelTS.ContextName);
 
 #line default
 #line hidden
             WriteLiteral("} client Reference to the service client.\n   */\n  constructor(client: ");
-#line 17 "MethodGroupTemplate.cshtml"
+#line 14 "MethodGroupTemplate.cshtml"
                   Write(Model.CodeModelTS.ContextName);
 
 #line default
 #line hidden
             WriteLiteral(") {\n    this.client = client;\n  }\n  ");
-#line 20 "MethodGroupTemplate.cshtml"
+#line 17 "MethodGroupTemplate.cshtml"
 Write(CodeGeneratorTS.GenerateMethods(Model.MethodTemplateModels, EmptyLine));
 
 #line default
 #line hidden
             WriteLiteral("\n}\n");
-#line 22 "MethodGroupTemplate.cshtml"
+#line 19 "MethodGroupTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 23 "MethodGroupTemplate.cshtml"
+#line 20 "MethodGroupTemplate.cshtml"
 Write(Model.GenerateOperationSpecDefinitions(EmptyLine));
 
 #line default
 #line hidden
+            WriteLiteral("\n");
         }
         #pragma warning restore 1998
     }
