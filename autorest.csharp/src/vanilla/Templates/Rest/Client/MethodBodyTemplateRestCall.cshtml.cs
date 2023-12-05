@@ -241,9 +241,9 @@ else
 
 #line default
 #line hidden
-            WriteLiteral(".HttpClient.BaseAddress.AbsoluteUri ?? ");
+            WriteLiteral(".HttpClient.BaseAddress?.AbsoluteUri ?? ");
 #line 61 "MethodBodyTemplateRestCall.cshtml"
-                                                                            Write(Model.ClientReference);
+                                                                             Write(Model.ClientReference);
 
 #line default
 #line hidden

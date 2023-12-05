@@ -1,4 +1,5 @@
 src/
+obj/
 .vs/
 *.sln
 *.tgz
