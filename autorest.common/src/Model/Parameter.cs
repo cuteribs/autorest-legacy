@@ -6,10 +6,10 @@ using Newtonsoft.Json;
 
 namespace AutoRest.Core.Model
 {
-    /// <summary>
-    /// Defines an HTTP method parameter.
-    /// </summary>
-    public class Parameter : IVariable
+	/// <summary>
+	/// Defines an HTTP method parameter.
+	/// </summary>
+	public class Parameter : IVariable
     {
         /// <summary>
         /// Creates a new instance of Parameter class.

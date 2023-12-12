@@ -260,11 +260,13 @@ namespace AutoRest.Modeler
 
             parameter.Documentation = swaggerObject.Description;
             parameter.CollectionFormat = swaggerObject.CollectionFormat;
+            parameter.Explode = swaggerObject.Explode;
+            parameter.Style = swaggerObject.Style;
 
             // tag the paramter with all the extensions from the swagger object
             parameter.Extensions.AddRange(swaggerObject.Extensions);
 
-            SetConstraints(parameter.Constraints, swaggerObject.Schema);
+			SetConstraints(parameter.Constraints, swaggerObject.Schema);
         }
 
         private static bool IsSwaggerObjectConstant(SwaggerObject swaggerObject, bool isRequired)

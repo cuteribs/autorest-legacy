@@ -1,11 +1,10 @@
 {
   "name": "@cuteribs/autorest.modeler",
-  "version": "2.4.6",
+  "version": "2.4.7",
   "description": "The modeler extension for classic generators in AutoRest.",
   "scripts": {
     "start": "dotnet bin/autorest.modeler.dll --server",
     "build": "dotnet publish src -f net6.0 -c Release -o bin -p:Version=$(npm pkg get version)",
-    "pack": "npm run build && npm version patch && npm pack",
     "publish": "npm run build && npm publish --access public"
   },
   "devDependencies": {},

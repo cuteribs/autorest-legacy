@@ -373,7 +373,12 @@ namespace AutoRest.CSharp.Model
                         replaceString = "_queryParameters.Add(string.Format(\"{0}={{0}}\", {1}));";
                     }
 
-                    if (queryParameter.CollectionFormat == CollectionFormat.Multi)
+                    if (
+                        // for swagger 2.0
+                        queryParameter.CollectionFormat == CollectionFormat.Multi
+                        // for openapi 3.0
+                        || (queryParameter.Style == ParameterStyle.Form && queryParameter.Explode != false)
+                    )
                     {
                         builder.AppendLine("if ({0}.Count == 0)", queryParameter.Name)
                            .AppendLine("{").Indent()

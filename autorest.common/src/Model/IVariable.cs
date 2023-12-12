@@ -201,6 +201,10 @@ namespace AutoRest.Core.Model
         public abstract string Qualifier { get; }
         [JsonIgnore]
         public virtual IEnumerable<string> MyReservedNames  { get { if (!string.IsNullOrEmpty(Name)) { yield return Name; } }}
-    }
+
+		public virtual ParameterStyle? Style { get; set; }
+
+		public virtual bool? Explode { get; set; }
+	}
 }
   
