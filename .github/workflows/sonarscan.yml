@@ -16,6 +16,11 @@ jobs:
       
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
+      with:
+        args: >
+          -Dsonar.organization=cuteribs 
+          -Dsonar.projectKey=cuteribs_autorest-legacy
+          -Dsonar.verbose=true
       env: 
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       
