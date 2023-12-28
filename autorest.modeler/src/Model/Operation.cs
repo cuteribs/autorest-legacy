@@ -50,7 +50,7 @@ namespace AutoRest.Modeler.Model
         public ExternalDoc ExternalDocs { get; set; }
 
         // TODO: fix/remove
-        public IEnumerable<string> GetConsumes(Dictionary<string, RequestBody> requestBodies)
+        public IEnumerable<string> GetConsumes(IDictionary<string, RequestBody> requestBodies)
         {
             var body = RequestBody;
             if (body?.Reference != null)

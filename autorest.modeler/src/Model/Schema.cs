@@ -29,7 +29,7 @@ namespace AutoRest.Modeler.Model
         /// <summary>
         /// Key is a type serviceTypeName.
         /// </summary>
-        public Dictionary<string, Schema> Properties { get; set; }
+        public IDictionary<string, Schema> Properties { get; set; }
 
         public bool ReadOnly { get; set; }
 

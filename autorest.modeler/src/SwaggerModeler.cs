@@ -369,7 +369,7 @@ namespace AutoRest.Modeler
         /// <param name="properties">The schema's properties</param>
         /// <param name="extends">The schema's extends</param>
         /// <returns>True if one or more properties found in this schema or in it's ancestors. False otherwise</returns>
-        private bool AncestorsHaveProperties(Dictionary<string, Schema> properties, string extends)
+        private bool AncestorsHaveProperties(IDictionary<string, Schema> properties, string extends)
         {
             if (properties.IsNullOrEmpty() && string.IsNullOrEmpty(extends))
             {

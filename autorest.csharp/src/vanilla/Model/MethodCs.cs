@@ -380,11 +380,7 @@ namespace AutoRest.CSharp.Model
                         || (queryParameter.Style == ParameterStyle.Form && queryParameter.Explode != false)
                     )
                     {
-                        builder.AppendLine("if ({0}.Count == 0)", queryParameter.Name)
-                           .AppendLine("{").Indent()
-                           .AppendLine(replaceString, queryParameter.SerializedName, "string.Empty").Outdent()
-                           .AppendLine("}")
-                           .AppendLine("else")
+                        builder.AppendLine("if ({0}.Any())", queryParameter.Name)
                            .AppendLine("{").Indent()
                            .AppendLine("foreach (var _item in {0})", queryParameter.Name)
                            .AppendLine("{").Indent()
@@ -405,7 +401,7 @@ namespace AutoRest.CSharp.Model
                     }
                 }
 
-                builder.AppendLine("if (_queryParameters.Count > 0)")
+                builder.AppendLine("if (_queryParameters.Any())")
                     .AppendLine("{").Indent();
                 if (this.Extensions.ContainsKey("nextLinkMethod") && (bool)this.Extensions["nextLinkMethod"])
                 {

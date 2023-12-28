@@ -192,7 +192,7 @@ namespace AutoRest.Modeler
             }
 
             // Response format
-            List<Stack<IModelType>> typesList = BuildResponses(method, headerType);
+            var typesList = BuildResponses(method, headerType);
 
             method.ReturnType = BuildMethodReturnType(typesList, headerType);
             if (method.Responses.Count == 0)
