@@ -69,7 +69,7 @@ namespace AutoRest.CSharp.Model
 
             if (addCustomHeaderParameters)
             {
-                declarations.Add("System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null");
+                declarations.Add("System.Collections.Generic.Dictionary<string, System.Collections.Generic.IList<string>> customHeaders = null");
             }
 
             return string.Join(", ", declarations);

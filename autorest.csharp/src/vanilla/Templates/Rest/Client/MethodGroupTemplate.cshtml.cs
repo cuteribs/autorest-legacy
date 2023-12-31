@@ -32,63 +32,76 @@ Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral("\nnamespace ");
-#line 5 "MethodGroupTemplate.cshtml"
+            WriteLiteral("\nusing System.Linq;\nusing System.IO;\nusing Microsoft.Rest;\nusing ");
+#line 8 "MethodGroupTemplate.cshtml"
+  Write(Settings.Namespace);
+
+#line default
+#line hidden
+            WriteLiteral(".");
+#line 8 "MethodGroupTemplate.cshtml"
+                        Write(Settings.InterfaceFolder);
+
+#line default
+#line hidden
+            WriteLiteral(";\nnamespace ");
+#line 9 "MethodGroupTemplate.cshtml"
      Write(Settings.Namespace);
 
 #line default
 #line hidden
-            WriteLiteral("\n{\n    using System.Linq;\n    using System.IO;\n    using Microsoft.Rest;\n");
-#line 10 "MethodGroupTemplate.cshtml"
- foreach (var usingString in Model.Usings) {
+            WriteLiteral("\n{\n");
+#line 11 "MethodGroupTemplate.cshtml"
+ foreach (var usingString in Model.Usings)
+{
 
 #line default
 #line hidden
 
             WriteLiteral("    using ");
-#line 11 "MethodGroupTemplate.cshtml"
+#line 13 "MethodGroupTemplate.cshtml"
        Write(usingString);
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 12 "MethodGroupTemplate.cshtml"
+#line 14 "MethodGroupTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 13 "MethodGroupTemplate.cshtml"
+#line 15 "MethodGroupTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n    /// <summary>\n    /// ");
-#line 15 "MethodGroupTemplate.cshtml"
+#line 17 "MethodGroupTemplate.cshtml"
     Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral(" operations.\n    /// </summary>\n    public partial class ");
-#line 17 "MethodGroupTemplate.cshtml"
+#line 19 "MethodGroupTemplate.cshtml"
                      Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral(" : Microsoft.Rest.IServiceOperations<");
-#line 17 "MethodGroupTemplate.cshtml"
+#line 19 "MethodGroupTemplate.cshtml"
                                                                           Write(Model.CodeModel.Name);
 
 #line default
 #line hidden
             WriteLiteral(">, I");
-#line 17 "MethodGroupTemplate.cshtml"
+#line 19 "MethodGroupTemplate.cshtml"
                                                                                                     Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral("\n    {\n        /// <summary>\n        /// Initializes a new instance of the ");
-#line 20 "MethodGroupTemplate.cshtml"
+#line 22 "MethodGroupTemplate.cshtml"
                                           Write(Model.TypeName);
 
 #line default
@@ -102,49 +115,49 @@ Write(EmptyLine);
         /// Thrown when a required parameter is null
         /// </exception>
         public ");
-#line 28 "MethodGroupTemplate.cshtml"
+#line 30 "MethodGroupTemplate.cshtml"
            Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral("(");
-#line 28 "MethodGroupTemplate.cshtml"
+#line 30 "MethodGroupTemplate.cshtml"
                             Write(Model.CodeModel.Name);
 
 #line default
 #line hidden
             WriteLiteral(" client)\n        {\n            if (client == null) \n            {\n                throw new System.ArgumentNullException(\"client\");\n            }\n            this.Client = client;\n        }\n        ");
-#line 36 "MethodGroupTemplate.cshtml"
+#line 38 "MethodGroupTemplate.cshtml"
    Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n        /// <summary>\n        /// Gets a reference to the ");
-#line 38 "MethodGroupTemplate.cshtml"
+#line 40 "MethodGroupTemplate.cshtml"
                                Write(Model.CodeModel.Name);
 
 #line default
 #line hidden
             WriteLiteral("\n        /// </summary>\n        public ");
-#line 40 "MethodGroupTemplate.cshtml"
+#line 42 "MethodGroupTemplate.cshtml"
           Write(Model.CodeModel.Name);
 
 #line default
 #line hidden
             WriteLiteral(" Client { get; private set; }\n        ");
-#line 41 "MethodGroupTemplate.cshtml"
+#line 43 "MethodGroupTemplate.cshtml"
    Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 42 "MethodGroupTemplate.cshtml"
+#line 44 "MethodGroupTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 42 "MethodGroupTemplate.cshtml"
+#line 44 "MethodGroupTemplate.cshtml"
          foreach (MethodCs method in Model.Methods)
         {
 
@@ -152,24 +165,24 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        ");
-#line 44 "MethodGroupTemplate.cshtml"
+#line 46 "MethodGroupTemplate.cshtml"
       Write(Include(new MethodTemplate(), method));
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 45 "MethodGroupTemplate.cshtml"
+#line 47 "MethodGroupTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 45 "MethodGroupTemplate.cshtml"
+#line 47 "MethodGroupTemplate.cshtml"
    Write(EmptyLine);
 
 #line default
 #line hidden
-#line 45 "MethodGroupTemplate.cshtml"
+#line 47 "MethodGroupTemplate.cshtml"
                   
         }
 

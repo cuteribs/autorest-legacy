@@ -1,33 +1,33 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoRest.Core;
-using AutoRest.Core.Model;
 using AutoRest.Core.Logging;
+using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.CSharp.Model;
 using AutoRest.CSharp.vanilla.Templates.Rest.Client;
 using AutoRest.CSharp.vanilla.Templates.Rest.Common;
-using static AutoRest.Core.Utilities.DependencyInjection;
 using AutoRest.Extensions;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AutoRest.CSharp
 {
-    public class CodeGeneratorCs : CodeGenerator
+	public class CodeGeneratorCs : CodeGenerator
     {
         protected const string ClientRuntimePackage = "Microsoft.Rest.ClientRuntime.2.3.8";
 
         protected virtual string GeneratedSourcesBaseFolder => "";
 
         protected string FolderModels => Settings.Instance.ModelsName;
+
+        protected string InterfaceFolder => Settings.Instance.InterfaceFolder;
 
         public override bool IsSingleFileGenerationSupported => true;
 
@@ -50,10 +50,11 @@ namespace AutoRest.CSharp
             }
         }
 
-        protected virtual async Task GenerateServiceClient<T>(CodeModelCs codeModel) where T : Template<CodeModelCs>, new()
+        protected virtual async Task GenerateServiceClient<T>(CodeModelCs codeModel)
+            where T : Template<CodeModelCs>, new()
         {
             await Write(new T { Model = codeModel }, $"{GeneratedSourcesBaseFolder}{codeModel.Name}{ImplementationFileExtension}");
-            await Write(new ServiceClientInterfaceTemplate { Model = codeModel }, $"{GeneratedSourcesBaseFolder}I{codeModel.Name}{ImplementationFileExtension}");
+            await Write(new ServiceClientInterfaceTemplate { Model = codeModel }, $"{GeneratedSourcesBaseFolder}{InterfaceFolder}/I{codeModel.Name}{ImplementationFileExtension}");
         }
 
         protected virtual async Task GenerateOperations<T>(IEnumerable<MethodGroup> modelTypes) where T : Template<MethodGroupCs>, new()
@@ -70,7 +71,7 @@ namespace AutoRest.CSharp
                     // Operation interface
                     await Write(
                         new MethodGroupInterfaceTemplate { Model = methodGroup },
-                        $"{GeneratedSourcesBaseFolder}I{methodGroup.TypeName}{ImplementationFileExtension}");
+                        $"{GeneratedSourcesBaseFolder}{InterfaceFolder}/I{methodGroup.TypeName}{ImplementationFileExtension}");
                 }
 
                 // Extensions

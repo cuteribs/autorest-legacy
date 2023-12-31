@@ -8,11 +8,10 @@
 @inherits Template<global::AutoRest.CSharp.Model.CompositeTypeCs>
 @Header("// ")
 @EmptyLine
+using System.Linq;
+@EmptyLine
 namespace @(Settings.Namespace).@(Settings.ModelsName)
 {
-    using System.Linq;
-@EmptyLine
-
 @if (!string.IsNullOrEmpty(Model.EffectiveDocumentation))
 {
     @:/// <summary>

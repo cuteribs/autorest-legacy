@@ -3,11 +3,11 @@
 @inherits AutoRest.Core.Template<AutoRest.CSharp.Model.EnumTypeCs>
 @Header("// ")
 @EmptyLine
+using System.Reflection;
+@EmptyLine
 namespace @(Settings.Namespace).@(Settings.ModelsName)
 {
 @EmptyLine
-    using System.Reflection;
-    @EmptyLine
     /// <summary>
     @WrapComment("/// ", "Defines values for " + Model.Name + ".")
     /// </summary>

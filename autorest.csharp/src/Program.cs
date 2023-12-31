@@ -104,7 +104,7 @@ namespace AutoRest.CSharp
                 new Settings
                 {
                     Namespace = await GetValue("namespace"),
-                    InterfaceFullName = await GetValue("interface"),
+                    CustomInterface = await GetValue("custom-interface"),
                     ClientName = GetXmsCodeGenSetting<string>(codeModelT, "name") ?? await GetValue("override-client-name"),
                     PayloadFlatteningThreshold = GetXmsCodeGenSetting<int?>(codeModelT, "ft") ?? await GetValue<int?>("payload-flattening-threshold") ?? 0,
                     AddCredentials = await GetValue<bool?>("add-credentials") ?? false,

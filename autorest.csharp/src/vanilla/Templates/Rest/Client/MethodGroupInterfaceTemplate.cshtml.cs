@@ -57,55 +57,62 @@ Write(EmptyLine);
 #line hidden
             WriteLiteral("\nnamespace ");
 #line 9 "MethodGroupInterfaceTemplate.cshtml"
-     Write(Settings.Namespace);
+      Write(Settings.Namespace);
+
+#line default
+#line hidden
+            WriteLiteral(".");
+#line 9 "MethodGroupInterfaceTemplate.cshtml"
+                            Write(Settings.InterfaceFolder);
 
 #line default
 #line hidden
             WriteLiteral("\n{\n");
 #line 11 "MethodGroupInterfaceTemplate.cshtml"
- foreach (var usingString in Model.Usings) {
+ foreach (var usingString in Model.Usings)
+{
 
 #line default
 #line hidden
 
             WriteLiteral("    using ");
-#line 12 "MethodGroupInterfaceTemplate.cshtml"
+#line 13 "MethodGroupInterfaceTemplate.cshtml"
        Write(usingString);
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 13 "MethodGroupInterfaceTemplate.cshtml"
+#line 14 "MethodGroupInterfaceTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 14 "MethodGroupInterfaceTemplate.cshtml"
+#line 15 "MethodGroupInterfaceTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n    /// <summary>\n    /// ");
-#line 16 "MethodGroupInterfaceTemplate.cshtml"
+#line 17 "MethodGroupInterfaceTemplate.cshtml"
     Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral(" operations.\n    /// </summary>\n    public partial interface I");
-#line 18 "MethodGroupInterfaceTemplate.cshtml"
+#line 19 "MethodGroupInterfaceTemplate.cshtml"
                           Write(Model.TypeName);
 
 #line default
 #line hidden
             WriteLiteral("\n    {\n");
-#line 20 "MethodGroupInterfaceTemplate.cshtml"
+#line 21 "MethodGroupInterfaceTemplate.cshtml"
     
 
 #line default
 #line hidden
 
-#line 20 "MethodGroupInterfaceTemplate.cshtml"
+#line 21 "MethodGroupInterfaceTemplate.cshtml"
      foreach(MethodCs method in Model.Methods)
     {
         if (method.ExcludeFromInterface)
@@ -120,13 +127,13 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        /// <summary>\n        ");
-#line 30 "MethodGroupInterfaceTemplate.cshtml"
+#line 31 "MethodGroupInterfaceTemplate.cshtml"
      Write(WrapComment("/// ", String.IsNullOrEmpty(method.Summary) ? method.Description.EscapeXmlComment() : method.Summary.EscapeXmlComment()));
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 31 "MethodGroupInterfaceTemplate.cshtml"
+#line 32 "MethodGroupInterfaceTemplate.cshtml"
             if (!String.IsNullOrEmpty(method.ExternalDocsUrl))
             {
 
@@ -134,20 +141,20 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        /// <see href=\"");
-#line 33 "MethodGroupInterfaceTemplate.cshtml"
+#line 34 "MethodGroupInterfaceTemplate.cshtml"
                     Write(method.ExternalDocsUrl);
 
 #line default
 #line hidden
             WriteLiteral("\" />\n");
-#line 34 "MethodGroupInterfaceTemplate.cshtml"
+#line 35 "MethodGroupInterfaceTemplate.cshtml"
             }
 
 #line default
 #line hidden
 
             WriteLiteral("        /// </summary>\n");
-#line 36 "MethodGroupInterfaceTemplate.cshtml"
+#line 37 "MethodGroupInterfaceTemplate.cshtml"
         }
         if (!String.IsNullOrEmpty(method.Description) && !String.IsNullOrEmpty(method.Summary))
         {
@@ -156,13 +163,13 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        /// <remarks>\n        ");
-#line 40 "MethodGroupInterfaceTemplate.cshtml"
+#line 41 "MethodGroupInterfaceTemplate.cshtml"
      Write(WrapComment("/// ", method.Description.EscapeXmlComment()));
 
 #line default
 #line hidden
             WriteLiteral("\n        /// </remarks>\n");
-#line 42 "MethodGroupInterfaceTemplate.cshtml"
+#line 43 "MethodGroupInterfaceTemplate.cshtml"
         }
         foreach (ParameterCs parameter in method.LocalParameters)
         {
@@ -171,38 +178,38 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        /// <param name=\'");
-#line 45 "MethodGroupInterfaceTemplate.cshtml"
+#line 46 "MethodGroupInterfaceTemplate.cshtml"
                       Write(parameter.Name);
 
 #line default
 #line hidden
             WriteLiteral("\'>\n        ");
-#line 46 "MethodGroupInterfaceTemplate.cshtml"
+#line 47 "MethodGroupInterfaceTemplate.cshtml"
      Write(WrapComment("/// ", parameter.DocumentationString.EscapeXmlComment()));
 
 #line default
 #line hidden
             WriteLiteral("\n        /// </param>\n");
-#line 48 "MethodGroupInterfaceTemplate.cshtml"
+#line 49 "MethodGroupInterfaceTemplate.cshtml"
         }
 
 #line default
 #line hidden
 
             WriteLiteral("        /// <param name=\'customHeaders\'>\n        /// The headers that will be added to request.\n        /// </param>\n        /// <param name=\'cancellationToken\'>\n        /// The cancellation token.\n        /// </param>\n        /// <exception cref=\"");
-#line 55 "MethodGroupInterfaceTemplate.cshtml"
+#line 56 "MethodGroupInterfaceTemplate.cshtml"
                            Write(method.OperationExceptionTypeString);
 
 #line default
 #line hidden
             WriteLiteral("\">\n        /// Thrown when the operation returned an invalid status code\n        /// </exception>\n");
-#line 58 "MethodGroupInterfaceTemplate.cshtml"
+#line 59 "MethodGroupInterfaceTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 58 "MethodGroupInterfaceTemplate.cshtml"
+#line 59 "MethodGroupInterfaceTemplate.cshtml"
          if (method.Responses.Where(r => r.Value.Body != null).Any())
         {
 
@@ -210,20 +217,20 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        /// <exception cref=\"Microsoft.Rest.SerializationException\">\n        /// Thrown when unable to deserialize the response\n        /// </exception>\n");
-#line 63 "MethodGroupInterfaceTemplate.cshtml"
+#line 64 "MethodGroupInterfaceTemplate.cshtml"
         }
 
 #line default
 #line hidden
 
-#line 63 "MethodGroupInterfaceTemplate.cshtml"
+#line 64 "MethodGroupInterfaceTemplate.cshtml"
          
         
 
 #line default
 #line hidden
 
-#line 64 "MethodGroupInterfaceTemplate.cshtml"
+#line 65 "MethodGroupInterfaceTemplate.cshtml"
          if (method.Parameters.Any(p => p.IsRequired && p.IsNullable()))
         {
 
@@ -231,44 +238,44 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        /// <exception cref=\"Microsoft.Rest.ValidationException\">\n        /// Thrown when a required parameter is null\n        /// </exception>\n");
-#line 69 "MethodGroupInterfaceTemplate.cshtml"
+#line 70 "MethodGroupInterfaceTemplate.cshtml"
         }
 
 #line default
 #line hidden
 
-#line 69 "MethodGroupInterfaceTemplate.cshtml"
+#line 70 "MethodGroupInterfaceTemplate.cshtml"
          
 
 #line default
 #line hidden
 
             WriteLiteral("        ");
-#line 70 "MethodGroupInterfaceTemplate.cshtml"
+#line 71 "MethodGroupInterfaceTemplate.cshtml"
       Write(method.GetObsoleteAttribute());
 
 #line default
 #line hidden
             WriteLiteral("\n        System.Threading.Tasks.Task<");
-#line 71 "MethodGroupInterfaceTemplate.cshtml"
+#line 72 "MethodGroupInterfaceTemplate.cshtml"
                                  Write(method.OperationResponseReturnTypeString);
 
 #line default
 #line hidden
             WriteLiteral("> ");
-#line 71 "MethodGroupInterfaceTemplate.cshtml"
+#line 72 "MethodGroupInterfaceTemplate.cshtml"
                                                                              Write(method.Name);
 
 #line default
 #line hidden
             WriteLiteral("WithHttpMessagesAsync(");
-#line 71 "MethodGroupInterfaceTemplate.cshtml"
+#line 72 "MethodGroupInterfaceTemplate.cshtml"
                                                                                                                  Write(method.GetAsyncMethodParameterDeclaration(true));
 
 #line default
 #line hidden
             WriteLiteral(");\n");
-#line 72 "MethodGroupInterfaceTemplate.cshtml"
+#line 73 "MethodGroupInterfaceTemplate.cshtml"
     }
 
 #line default

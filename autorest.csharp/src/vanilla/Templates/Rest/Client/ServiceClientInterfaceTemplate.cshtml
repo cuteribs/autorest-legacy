@@ -5,18 +5,19 @@
 @inherits AutoRest.Core.Template<CodeModelCs>
 @Header("// ")
 @EmptyLine
-namespace @Settings.Namespace
+namespace @(Settings.Namespace).@(Settings.InterfaceFolder)
 {
-@foreach (var usingString in Model.Usings) {
+@foreach (var usingString in Model.Usings)
+{
     @:using @usingString;
 }
 @EmptyLine
-/// <summary>
+    /// <summary>
     @WrapComment("/// ", Model.Documentation.EscapeXmlComment())
     /// </summary>
-    @if (@Settings.InterfaceFullName != null)
+    @if (@Settings.CustomInterface != null)
     {
-    @:public partial interface I@(Model.Name) : @Settings.InterfaceFullName, System.IDisposable
+    @:public partial interface I@(Model.Name) : @Settings.CustomInterface, System.IDisposable
     }
     else
     {

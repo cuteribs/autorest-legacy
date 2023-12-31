@@ -6,9 +6,10 @@
 @inherits AutoRest.Core.Template<AutoRest.CSharp.Model.MethodGroupCs>
 @Header("// ")
 @EmptyLine
-namespace @Settings.Namespace
+namespace @(Settings.Namespace).@(Settings.InterfaceFolder)
 {
-@foreach (var usingString in Model.Usings) {
+@foreach (var usingString in Model.Usings)
+{
     @:using @usingString;
 }
 @EmptyLine

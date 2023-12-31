@@ -2,13 +2,16 @@
 @inherits AutoRest.Core.Template<AutoRest.CSharp.Model.MethodGroupCs>
 @Header("// ")
 @EmptyLine
+using @(Settings.Namespace).@(Settings.InterfaceFolder);
+@EmptyLine
 namespace @Settings.Namespace
 {
+@foreach (var usingString in Model.Usings)
+{
+    @:using @usingString;
     using System.Linq;
     using System.IO;
     using Microsoft.Rest;
-@foreach (var usingString in Model.Usings) {
-    @:using @usingString;
 }
 @EmptyLine
     /// <summary>

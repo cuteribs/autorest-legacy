@@ -5,10 +5,13 @@
 @inherits AutoRest.Core.Template<CodeModelCs>
 @Header("// ")
 @EmptyLine
+using Microsoft.Rest;
+using @(Settings.Namespace).@(Settings.InterfaceFolder);
+@EmptyLine
 namespace @Settings.Namespace
 {
-    using Microsoft.Rest;
-@foreach (var usingString in Model.Usings) {
+@foreach (var usingString in Model.Usings)
+{
     @:using @usingString;
 }
 @EmptyLine

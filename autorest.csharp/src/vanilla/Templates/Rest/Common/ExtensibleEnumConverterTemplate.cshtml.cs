@@ -38,25 +38,25 @@ Write(EmptyLine);
 
 #line default
 #line hidden
+            WriteLiteral("\nusing System.Reflection;\n");
+#line 7 "ExtensibleEnumConverterTemplate.cshtml"
+Write(EmptyLine);
+
+#line default
+#line hidden
             WriteLiteral("\nnamespace ");
-#line 6 "ExtensibleEnumConverterTemplate.cshtml"
+#line 8 "ExtensibleEnumConverterTemplate.cshtml"
       Write(Settings.Namespace);
 
 #line default
 #line hidden
             WriteLiteral(".");
-#line 6 "ExtensibleEnumConverterTemplate.cshtml"
+#line 8 "ExtensibleEnumConverterTemplate.cshtml"
                             Write(Settings.ModelsName);
 
 #line default
 #line hidden
             WriteLiteral("\n{\n");
-#line 8 "ExtensibleEnumConverterTemplate.cshtml"
-Write(EmptyLine);
-
-#line default
-#line hidden
-            WriteLiteral("\n    using System.Reflection;\n    ");
 #line 10 "ExtensibleEnumConverterTemplate.cshtml"
 Write(EmptyLine);
 

@@ -254,7 +254,8 @@ namespace AutoRest.Modeler
 
             CodeModel.Namespace = settings.Namespace;
             CodeModel.ModelsName = settings.ModelsName;
-            CodeModel.ApiVersion = ServiceDefinition.Info.Version == "" // since info.version is required according to spec, swagger2openapi sets it to "" if missing
+            CodeModel.InterfaceFolder = settings.InterfaceFolder;
+			CodeModel.ApiVersion = ServiceDefinition.Info.Version == "" // since info.version is required according to spec, swagger2openapi sets it to "" if missing
                 ? null                                                  // ...but that mocks with our multi-api-version treatment of inlining the api-version
                 : ServiceDefinition.Info.Version;
             CodeModel.Documentation = ServiceDefinition.Info.Description;

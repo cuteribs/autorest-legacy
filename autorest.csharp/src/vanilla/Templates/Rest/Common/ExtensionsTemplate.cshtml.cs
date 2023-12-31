@@ -38,57 +38,76 @@ Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral("\nnamespace ");
+            WriteLiteral("\nusing ");
 #line 6 "ExtensionsTemplate.cshtml"
+  Write(Settings.Namespace);
+
+#line default
+#line hidden
+            WriteLiteral(".");
+#line 6 "ExtensionsTemplate.cshtml"
+                        Write(Settings.InterfaceFolder);
+
+#line default
+#line hidden
+            WriteLiteral(";\n");
+#line 7 "ExtensionsTemplate.cshtml"
+Write(EmptyLine);
+
+#line default
+#line hidden
+            WriteLiteral("\nnamespace ");
+#line 8 "ExtensionsTemplate.cshtml"
      Write(Settings.Namespace);
 
 #line default
 #line hidden
             WriteLiteral("\n{\n");
-#line 8 "ExtensionsTemplate.cshtml"
- foreach (var usingString in Model.Usings) {
+#line 10 "ExtensionsTemplate.cshtml"
+ foreach (var usingString in Model.Usings)
+{
 
 #line default
 #line hidden
 
             WriteLiteral("    using ");
-#line 9 "ExtensionsTemplate.cshtml"
+#line 12 "ExtensionsTemplate.cshtml"
        Write(usingString);
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 10 "ExtensionsTemplate.cshtml"
+#line 13 "ExtensionsTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 11 "ExtensionsTemplate.cshtml"
+#line 14 "ExtensionsTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n    /// <summary>\n    /// Extension methods for ");
-#line 13 "ExtensionsTemplate.cshtml"
+#line 16 "ExtensionsTemplate.cshtml"
                           Write(Model.ExtensionTypeName);
 
 #line default
 #line hidden
             WriteLiteral(".\n    /// </summary>\n    public static partial class ");
-#line 15 "ExtensionsTemplate.cshtml"
+#line 18 "ExtensionsTemplate.cshtml"
                             Write(Model.ExtensionTypeName);
 
 #line default
 #line hidden
             WriteLiteral("Extensions\n    {\n");
-#line 17 "ExtensionsTemplate.cshtml"
+#line 20 "ExtensionsTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 17 "ExtensionsTemplate.cshtml"
+#line 20 "ExtensionsTemplate.cshtml"
          foreach (MethodCs method in Model.Methods)
         {
             if (method.ExcludeFromInterface)
@@ -101,24 +120,24 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("            ");
-#line 24 "ExtensionsTemplate.cshtml"
+#line 27 "ExtensionsTemplate.cshtml"
           Write(Include(new ExtensionMethodTemplate(), method));
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 25 "ExtensionsTemplate.cshtml"
+#line 28 "ExtensionsTemplate.cshtml"
             
 
 #line default
 #line hidden
 
-#line 25 "ExtensionsTemplate.cshtml"
+#line 28 "ExtensionsTemplate.cshtml"
        Write(EmptyLine);
 
 #line default
 #line hidden
-#line 25 "ExtensionsTemplate.cshtml"
+#line 28 "ExtensionsTemplate.cshtml"
                        
         }
 

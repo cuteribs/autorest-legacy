@@ -15,7 +15,7 @@ namespace AutoRest.Core.Model
     {
         protected SequenceType()
         {
-            Name.OnGet+= v=> $"IList<{ElementType.Name}>";
+            Name.OnGet+= v=> $"IEnumerable<{ElementType.Name}>";
         }
 
         [JsonIgnore]

@@ -108,12 +108,17 @@ namespace AutoRest.Core.Model
         {
             get => _modelsName;
             set => _modelsName = CodeNamer.Instance.GetNamespaceName(value);
-        }
+		}
 
-        /// <summary>
-        /// Gets or sets the version of the API described by this service.
-        /// </summary>
-        public virtual string ApiVersion { get; set; }
+		/// <summary>
+		/// Gets or sets a name for the generated client interfaces Namespace and Models output folder
+		/// </summary>
+		public string InterfaceFolder { get; set; } = "Interfaces";
+
+		/// <summary>
+		/// Gets or sets the version of the API described by this service.
+		/// </summary>
+		public virtual string ApiVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the base url of the service.  This can be a templated url.
