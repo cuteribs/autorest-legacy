@@ -66,11 +66,10 @@ namespace AutoRest.Core.Utilities
             if (o != null)
             {
                 o.CopyFrom(JArray.Load(reader)
-                        .Select(
-                            each =>
-                                each["$ref"] != null
-                                    ? serializer.ResolveReference<T>(each["$ref"].Value<string>())
-                                    : each.ToObject<T>(serializer)));
+                    .Select(x => x["$ref"] != null
+                        ? serializer.ResolveReference<T>(x["$ref"].Value<string>())
+                        : x.ToObject<T>(serializer)
+                    ));
             }
             else
             {

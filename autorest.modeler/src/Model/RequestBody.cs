@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace AutoRest.Modeler.Model
 {
@@ -32,37 +33,30 @@ namespace AutoRest.Modeler.Model
             if (asParamCache == null)
             {
                 Func<string, bool> isFormDataMimeType = type => type == "multipart/form-data" || type == "application/x-www-form-urlencoded";
-                if (isFormDataMimeType(Content?.Keys?.FirstOrDefault()) && Content.Values.First().Schema != null) // => in: formData
+                var parameterLocation = ParameterLocation.Body;
+                var name = "body";
+                var reference = Reference;
+                var schema = Content?.Values.FirstOrDefault()?.Schema;
+
+                if (isFormDataMimeType(Content?.Keys?.FirstOrDefault()) && Content.Values.First().Schema != null)
                 {
-                    var schema = Content.Values.First().Schema;
-                    asParamCache = schema.Properties.Select(prop =>
-                        new SwaggerParameter
-                        {
-                            Description = prop.Value.Description,
-                            In = ParameterLocation.FormData,
-                            Name = prop.Key,
-                            IsRequired = schema.Required?.Contains(prop.Key) ?? false,
-                            Schema = prop.Value,
-                            Extensions = schema.Extensions,
-                            Style = prop.Value?.Style
-                        });
+                    parameterLocation = ParameterLocation.FormData;
+                    name = "form";
+                    reference = schema.Reference;
                 }
-                else // => in: body
+
+                var p = new SwaggerParameter
                 {
-                    var schema = Content?.Values.FirstOrDefault()?.Schema;
-                    var p = new SwaggerParameter
-                    {
-                        Description = Description,
-                        In = ParameterLocation.Body,
-                        Name = Extensions.GetValue<string>("x-ms-requestBody-name") ?? "body",
-                        IsRequired = Required,
-                        Schema = schema,
-                        Reference = Reference,
-                        Extensions = Extensions,
-                        Style = schema?.Style
-                    };
-                    asParamCache = new [] { p };
-                }
+                    Description = Description,
+                    In = parameterLocation,
+                    Name = Extensions.GetValue<string>("x-ms-requestBody-name") ?? name,
+                    IsRequired = Required,
+                    Schema = schema,
+                    Reference = reference,
+                    Extensions = Extensions,
+                    Style = schema?.Style
+                };
+                asParamCache = new[] { p };
             }
             return asParamCache;
         }

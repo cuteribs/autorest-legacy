@@ -8,6 +8,7 @@ using AutoRest.Modeler.Model;
 using ParameterLocation = AutoRest.Modeler.Model.ParameterLocation;
 using static AutoRest.Core.Utilities.DependencyInjection;
 using AutoRest.Swagger;
+using Newtonsoft.Json;
 
 namespace AutoRest.Modeler
 {
@@ -100,7 +101,8 @@ namespace AutoRest.Modeler
                 return swaggerParameter.Schema.GetBuilder(Modeler).BuildServiceType(serviceTypeName, swaggerParameter.IsRequired);
             }
 
-            return swaggerParameter.GetBuilder(Modeler).ParentBuildServiceType(serviceTypeName, swaggerParameter.IsRequired);
+            var builder = swaggerParameter.GetBuilder(Modeler);
+            return builder.ParentBuildServiceType(serviceTypeName, swaggerParameter.IsRequired);
         }
 
         public override IModelType ParentBuildServiceType(string serviceTypeName, bool required) => base.BuildServiceType(serviceTypeName, required);
