@@ -358,7 +358,7 @@ namespace AutoRest.CSharp.Model
             }
             if (this.LogicalParameters.Any(p => p.Location == ParameterLocation.Query))
             {
-                builder.AppendLine("System.Collections.Generic.List<string> _queryParameters = new System.Collections.Generic.List<string>();");
+                builder.AppendLine("System.Collections.Generic.IList<string> _queryParameters = new System.Collections.Generic.List<string>();");
                 foreach (var queryParameter in this.LogicalParameters.Where(p => p.Location == ParameterLocation.Query))
                 {
                     var replaceString = "_queryParameters.Add(string.Format(\"{0}={{0}}\", System.Uri.EscapeDataString({1})));";

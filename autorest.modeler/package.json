@@ -1,6 +1,6 @@
 {
   "name": "@cuteribs/autorest.modeler",
-  "version": "2.4.9",
+  "version": "2.4.10",
   "description": "The modeler extension for classic generators in AutoRest.",
   "scripts": {
     "start": "dotnet bin/autorest.modeler.dll --server",

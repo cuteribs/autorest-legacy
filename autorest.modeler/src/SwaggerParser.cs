@@ -32,6 +32,7 @@ namespace AutoRest.Modeler
                 settings.Converters.Add(new ResponseRefConverter(swaggerDocument));
                 settings.Converters.Add(new PathItemRefConverter(swaggerDocument));
                 settings.Converters.Add(new PathLevelParameterConverter(swaggerDocument));
+                settings.Converters.Add(new AdditionalPropertiesConverter());
                 var swaggerService = JsonConvert.DeserializeObject<ServiceDefinition>(swaggerDocument, settings);
 
                 // for parameterized host, will be made available via JsonRpc accessible state in the future
