@@ -99,14 +99,21 @@ namespace AutoRest.Modeler
 
 			static void ResponseFix(IEnumerable<Model.Operation> operations)
 			{
-				// keep only the first response
+				// keeps only 2xx responses
 				foreach (var operation in operations)
 				{
 					if (operation.Responses.Count > 1)
 					{
-						var first = operation.Responses.First();
+						var validResponses = operation.Responses
+							.Where(x => x.Key == "default" || x.Key.StartsWith("2"))
+							.ToArray();
+
 						operation.Responses.Clear();
-						operation.Responses.Add(first.Key, first.Value);
+
+						foreach (var response in validResponses)
+						{
+							operation.Responses.Add(response.Key, response.Value);
+						}
 					}
 				}
 			}
