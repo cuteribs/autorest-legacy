@@ -29,20 +29,6 @@
 @:@(parameter.ModelTypeName) @(parameter.Name) = @(parameter.DefaultValue);
 }
 @Model.BuildInputMappings()
-// Tracing
-bool _shouldTrace = Microsoft.Rest.ServiceClientTracing.IsEnabled;
-string _invocationId = null;
-if (_shouldTrace)
-{
-    _invocationId = Microsoft.Rest.ServiceClientTracing.NextInvocationId.ToString();
-    System.Collections.Generic.Dictionary<string, object> tracingParameters = new System.Collections.Generic.Dictionary<string, object>();
-@foreach (var parameter in Model.LogicalParameters.Where(p => !p.IsClientProperty))
-{
-    @:tracingParameters.Add("@(parameter.Name)", @(parameter.Name));
-}
-    tracingParameters.Add("cancellationToken", cancellationToken);
-    Microsoft.Rest.ServiceClientTracing.Enter(_invocationId, this, "@(Model.Name)", tracingParameters);
-}
 
 // Construct URL
 @if (Model.IsAbsoluteUrl)
@@ -278,11 +264,6 @@ if (@(Model.ClientReference).Credentials != null)
 }
 
 // Send Request
-if (_shouldTrace)
-{
-    Microsoft.Rest.ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
-}
-
 cancellationToken.ThrowIfCancellationRequested();
 @if (Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream) || Model.HttpMethod == HttpMethod.Head)
 {
@@ -291,10 +272,6 @@ cancellationToken.ThrowIfCancellationRequested();
 else
 {
 @:_httpResponse = await @(Model.ClientReference).HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
-}
-if (_shouldTrace)
-{
-    Microsoft.Rest.ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
 }
 
 System.Net.HttpStatusCode _statusCode = _httpResponse.StatusCode;
@@ -342,10 +319,6 @@ else
     ex.Request = new Microsoft.Rest.HttpRequestMessageWrapper(_httpRequest, _requestContent);
     ex.Response = new Microsoft.Rest.HttpResponseMessageWrapper(_httpResponse, _responseContent);
     @(Model.InitializeException)
-    if (_shouldTrace)
-    {
-        Microsoft.Rest.ServiceClientTracing.Error(_invocationId, ex);
-    }
 
     _httpRequest.Dispose();
     if (_httpResponse != null)
@@ -478,11 +451,6 @@ if ((int)_statusCode == @MethodCs.GetStatusCodeReference(responsePair.Key))
 @:    }
 @:    throw new Microsoft.Rest.SerializationException("Unable to deserialize the headers.", _httpResponse.GetHeadersAsJson().ToString(), ex);
 @:}
-}
-
-if (_shouldTrace)
-{
-    Microsoft.Rest.ServiceClientTracing.Exit(_invocationId, _result);
 }
 
 return _result;
