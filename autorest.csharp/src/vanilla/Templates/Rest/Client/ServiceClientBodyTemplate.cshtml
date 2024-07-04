@@ -54,6 +54,18 @@ public Newtonsoft.Json.JsonSerializerSettings DeserializationSettings { get; pri
 /// <param name='httpClient'>
 /// HttpClient to be used
 /// </param>
+@(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility) @(Model.Name)(System.Net.Http.HttpClient httpClient) : base(httpClient, true)
+{
+    this.Initialize();
+}
+@EmptyLine
+
+/// <summary>
+/// Initializes a new instance of the @Model.Name class.
+/// </summary>
+/// <param name='httpClient'>
+/// HttpClient to be used
+/// </param>
 /// <param name='disposeHttpClient'>
 /// True: will dispose the provided httpClient on calling @(Model.Name).Dispose(). False: will not dispose provided httpClient</param>
 @(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility) @(Model.Name)(System.Net.Http.HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
