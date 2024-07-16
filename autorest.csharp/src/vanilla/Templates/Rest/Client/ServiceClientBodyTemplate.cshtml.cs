@@ -180,19 +180,19 @@ Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral(" class.\n/// </summary>\n/// <param name=\'httpClient\'>\n/// HttpClient to be used\n/// </param>\n");
-#line 57 "ServiceClientBodyTemplate.cshtml"
+            WriteLiteral(" class.\n/// </summary>\n/// <param name=\'httpClient\'>\n/// HttpClient to be used\n/// </param>\n[Microsoft.Extensions.DependencyInjection.ActivatorUtilitiesConstructor]\n");
+#line 58 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 57 "ServiceClientBodyTemplate.cshtml"
+#line 58 "ServiceClientBodyTemplate.cshtml"
                                                                      Write(Model.Name);
 
 #line default
 #line hidden
-            WriteLiteral("(System.Net.Http.HttpClient httpClient) : base(httpClient, true)\n{\n    this.Initialize();\n}\n");
+            WriteLiteral("(System.Net.Http.HttpClient httpClient) : this(httpClient, true)\n{\n}\n");
 #line 61 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 

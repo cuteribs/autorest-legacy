@@ -42,7 +42,7 @@ namespace AutoRest.CSharp.Model
 
         [JsonIgnore]
         public string ConstructorVisibility
-            => Singleton<GeneratorSettingsCs>.Instance.InternalConstructors ? "internal" : "public";
+            => Singleton<GeneratorSettingsCs>.Instance?.InternalConstructors == true ? "internal" : "public";
 
         [JsonIgnore]
         public string RequiredConstructorParameters
