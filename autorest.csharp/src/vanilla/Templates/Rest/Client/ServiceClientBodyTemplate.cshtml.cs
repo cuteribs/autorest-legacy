@@ -192,92 +192,92 @@ Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
-            WriteLiteral("(System.Net.Http.HttpClient httpClient) : this(httpClient, true)\n{\n}\n");
-#line 61 "ServiceClientBodyTemplate.cshtml"
+            WriteLiteral("(System.Net.Http.HttpClient httpClient) : base(httpClient, true)\n{\n    this.Initialize();\n}\n");
+#line 62 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\n/// <summary>\n/// Initializes a new instance of the ");
-#line 64 "ServiceClientBodyTemplate.cshtml"
+#line 65 "ServiceClientBodyTemplate.cshtml"
                                  Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n/// <param name=\'httpClient\'>\n/// HttpClient to be used\n/// </param>\n/// <param name=\'disposeHttpClient\'>\n/// True: will dispose the provided httpClient on calling ");
-#line 70 "ServiceClientBodyTemplate.cshtml"
+#line 71 "ServiceClientBodyTemplate.cshtml"
                                                       Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(".Dispose(). False: will not dispose provided httpClient</param>\n");
-#line 71 "ServiceClientBodyTemplate.cshtml"
+#line 72 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 71 "ServiceClientBodyTemplate.cshtml"
+#line 72 "ServiceClientBodyTemplate.cshtml"
                                                                      Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(System.Net.Http.HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)\n{\n    this.Initialize();\n}\n");
-#line 75 "ServiceClientBodyTemplate.cshtml"
+#line 76 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\n/// <summary>\n/// Initializes a new instance of the ");
-#line 78 "ServiceClientBodyTemplate.cshtml"
+#line 79 "ServiceClientBodyTemplate.cshtml"
                                  Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n/// <param name=\'handlers\'>\n/// Optional. The delegating handlers to add to the http client pipeline.\n/// </param>\n");
-#line 83 "ServiceClientBodyTemplate.cshtml"
+#line 84 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 83 "ServiceClientBodyTemplate.cshtml"
+#line 84 "ServiceClientBodyTemplate.cshtml"
                                                                      Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(params System.Net.Http.DelegatingHandler[] handlers) : base(handlers)\n{\n    this.Initialize();\n}\n");
-#line 87 "ServiceClientBodyTemplate.cshtml"
+#line 88 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\n/// <summary>\n/// Initializes a new instance of the ");
-#line 90 "ServiceClientBodyTemplate.cshtml"
+#line 91 "ServiceClientBodyTemplate.cshtml"
                                  Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n/// <param name=\'rootHandler\'>\n/// Optional. The http client handler used to handle http transport.\n/// </param>\n/// <param name=\'handlers\'>\n/// Optional. The delegating handlers to add to the http client pipeline.\n/// </param>\n");
-#line 98 "ServiceClientBodyTemplate.cshtml"
+#line 99 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 98 "ServiceClientBodyTemplate.cshtml"
+#line 99 "ServiceClientBodyTemplate.cshtml"
                                                                      Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(System.Net.Http.HttpClientHandler rootHandler, params System.Net.Http.DelegatingHandler[] handlers) : base(rootHandler, handlers)\n{\n    this.Initialize();\n}\n");
-#line 102 "ServiceClientBodyTemplate.cshtml"
+#line 103 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n\n");
-#line 104 "ServiceClientBodyTemplate.cshtml"
+#line 105 "ServiceClientBodyTemplate.cshtml"
  if(!Model.IsCustomBaseUri)
 { 
 
@@ -285,7 +285,7 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 107 "ServiceClientBodyTemplate.cshtml"
+#line 108 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
@@ -302,32 +302,32 @@ Write(EmptyLine);
 /// Thrown when a required parameter is null
 /// </exception>
 ");
-#line 118 "ServiceClientBodyTemplate.cshtml"
+#line 119 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 118 "ServiceClientBodyTemplate.cshtml"
+#line 119 "ServiceClientBodyTemplate.cshtml"
                                                                        Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(System.Uri baseUri, params System.Net.Http.DelegatingHandler[] handlers) : this(handlers)\n{\n    if (baseUri == null)\n    {\n        throw new System.ArgumentNullException(\"baseUri\");\n    }\n\n    this.BaseUri = baseUri;\n}\n");
-#line 127 "ServiceClientBodyTemplate.cshtml"
+#line 128 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral(" \n");
-#line 128 "ServiceClientBodyTemplate.cshtml"
+#line 129 "ServiceClientBodyTemplate.cshtml"
 
 
 #line default
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 130 "ServiceClientBodyTemplate.cshtml"
+#line 131 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
@@ -347,13 +347,13 @@ Write(EmptyLine);
 /// Thrown when a required parameter is null
 /// </exception>
 ");
-#line 144 "ServiceClientBodyTemplate.cshtml"
+#line 145 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 144 "ServiceClientBodyTemplate.cshtml"
+#line 145 "ServiceClientBodyTemplate.cshtml"
                                                                        Write(Model.Name);
 
 #line default
@@ -368,26 +368,26 @@ Write(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility);
     this.BaseUri = baseUri;
 }
 ");
-#line 153 "ServiceClientBodyTemplate.cshtml"
+#line 154 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 154 "ServiceClientBodyTemplate.cshtml"
+#line 155 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
             WriteLiteral("\n");
-#line 156 "ServiceClientBodyTemplate.cshtml"
+#line 157 "ServiceClientBodyTemplate.cshtml"
   var parameters = Model.Properties.Where(p => p.IsRequired && p.IsReadOnly);
 
 #line default
 #line hidden
 
-#line 157 "ServiceClientBodyTemplate.cshtml"
+#line 158 "ServiceClientBodyTemplate.cshtml"
  if (parameters.Any())
 {
 
@@ -395,13 +395,13 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 160 "ServiceClientBodyTemplate.cshtml"
+#line 161 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n");
-#line 162 "ServiceClientBodyTemplate.cshtml"
+#line 163 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -409,44 +409,44 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("/// <param name=\'");
-#line 164 "ServiceClientBodyTemplate.cshtml"
+#line 165 "ServiceClientBodyTemplate.cshtml"
                Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\'>\n/// Required. ");
-#line 165 "ServiceClientBodyTemplate.cshtml"
+#line 166 "ServiceClientBodyTemplate.cshtml"
             Write(param.Documentation);
 
 #line default
 #line hidden
             WriteLiteral("\n/// </param>\n");
-#line 167 "ServiceClientBodyTemplate.cshtml"
+#line 168 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
             WriteLiteral("/// <param name=\'handlers\'>\n/// Optional. The delegating handlers to add to the http client pipeline.\n/// </param>\n/// <exception cref=\"System.ArgumentNullException\">\n/// Thrown when a required parameter is null\n/// </exception>\n");
-#line 174 "ServiceClientBodyTemplate.cshtml"
+#line 175 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 174 "ServiceClientBodyTemplate.cshtml"
+#line 175 "ServiceClientBodyTemplate.cshtml"
                              Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(");
-#line 174 "ServiceClientBodyTemplate.cshtml"
+#line 175 "ServiceClientBodyTemplate.cshtml"
                                            Write(Model.RequiredConstructorParameters);
 
 #line default
 #line hidden
             WriteLiteral(", params System.Net.Http.DelegatingHandler[] handlers) : this(handlers)\n{\n");
-#line 176 "ServiceClientBodyTemplate.cshtml"
+#line 177 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -454,19 +454,19 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (");
-#line 178 "ServiceClientBodyTemplate.cshtml"
+#line 179 "ServiceClientBodyTemplate.cshtml"
       Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(" == null)\n    {\n        throw new System.ArgumentNullException(\"");
-#line 180 "ServiceClientBodyTemplate.cshtml"
+#line 181 "ServiceClientBodyTemplate.cshtml"
                                               Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\");\n    }\n");
-#line 182 "ServiceClientBodyTemplate.cshtml"
+#line 183 "ServiceClientBodyTemplate.cshtml"
 }
 foreach (var param in parameters)
 {
@@ -475,25 +475,25 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    this.");
-#line 185 "ServiceClientBodyTemplate.cshtml"
+#line 186 "ServiceClientBodyTemplate.cshtml"
        Write(param.Name);
 
 #line default
 #line hidden
             WriteLiteral(" = ");
-#line 185 "ServiceClientBodyTemplate.cshtml"
+#line 186 "ServiceClientBodyTemplate.cshtml"
                        Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 186 "ServiceClientBodyTemplate.cshtml"
+#line 187 "ServiceClientBodyTemplate.cshtml"
     
 
 #line default
 #line hidden
 
-#line 186 "ServiceClientBodyTemplate.cshtml"
+#line 187 "ServiceClientBodyTemplate.cshtml"
      if (param.ModelType.IsPrimaryType(KnownPrimaryType.Credentials))
     {
 
@@ -501,13 +501,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (this.Credentials != null)\n    {\n        this.Credentials.InitializeServiceClient(this);\n    }\n");
-#line 192 "ServiceClientBodyTemplate.cshtml"
+#line 193 "ServiceClientBodyTemplate.cshtml"
     }
 
 #line default
 #line hidden
 
-#line 192 "ServiceClientBodyTemplate.cshtml"
+#line 193 "ServiceClientBodyTemplate.cshtml"
      
 }
 
@@ -515,26 +515,26 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("}\n");
-#line 195 "ServiceClientBodyTemplate.cshtml"
+#line 196 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 196 "ServiceClientBodyTemplate.cshtml"
+#line 197 "ServiceClientBodyTemplate.cshtml"
 
 
 #line default
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 198 "ServiceClientBodyTemplate.cshtml"
+#line 199 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n");
-#line 200 "ServiceClientBodyTemplate.cshtml"
+#line 201 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -542,50 +542,50 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("/// <param name=\'");
-#line 202 "ServiceClientBodyTemplate.cshtml"
+#line 203 "ServiceClientBodyTemplate.cshtml"
                Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\'>\n/// Required. ");
-#line 203 "ServiceClientBodyTemplate.cshtml"
+#line 204 "ServiceClientBodyTemplate.cshtml"
             Write(param.Documentation);
 
 #line default
 #line hidden
             WriteLiteral("\n/// </param>\n");
-#line 205 "ServiceClientBodyTemplate.cshtml"
+#line 206 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
             WriteLiteral("/// <param name=\'httpClient\'>\n/// HttpClient to be used\n/// </param>\n/// <param name=\'disposeHttpClient\'>\n/// True: will dispose the provided httpClient on calling ");
-#line 210 "ServiceClientBodyTemplate.cshtml"
+#line 211 "ServiceClientBodyTemplate.cshtml"
                                                         Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(".Dispose(). False: will not dispose provided httpClient</param>\n/// <exception cref=\"System.ArgumentNullException\">\n/// Thrown when a required parameter is null\n/// </exception>\n");
-#line 214 "ServiceClientBodyTemplate.cshtml"
+#line 215 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 214 "ServiceClientBodyTemplate.cshtml"
+#line 215 "ServiceClientBodyTemplate.cshtml"
                              Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(");
-#line 214 "ServiceClientBodyTemplate.cshtml"
+#line 215 "ServiceClientBodyTemplate.cshtml"
                                            Write(Model.RequiredConstructorParameters);
 
 #line default
 #line hidden
             WriteLiteral(", System.Net.Http.HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)\n{\n");
-#line 216 "ServiceClientBodyTemplate.cshtml"
+#line 217 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -593,19 +593,19 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (");
-#line 218 "ServiceClientBodyTemplate.cshtml"
+#line 219 "ServiceClientBodyTemplate.cshtml"
       Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(" == null)\n    {\n        throw new System.ArgumentNullException(\"");
-#line 220 "ServiceClientBodyTemplate.cshtml"
+#line 221 "ServiceClientBodyTemplate.cshtml"
                                               Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\");\n    }\n");
-#line 222 "ServiceClientBodyTemplate.cshtml"
+#line 223 "ServiceClientBodyTemplate.cshtml"
 }
 foreach (var param in parameters)
 {
@@ -614,25 +614,25 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    this.");
-#line 225 "ServiceClientBodyTemplate.cshtml"
+#line 226 "ServiceClientBodyTemplate.cshtml"
        Write(param.Name);
 
 #line default
 #line hidden
             WriteLiteral(" = ");
-#line 225 "ServiceClientBodyTemplate.cshtml"
+#line 226 "ServiceClientBodyTemplate.cshtml"
                        Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 226 "ServiceClientBodyTemplate.cshtml"
+#line 227 "ServiceClientBodyTemplate.cshtml"
     
 
 #line default
 #line hidden
 
-#line 226 "ServiceClientBodyTemplate.cshtml"
+#line 227 "ServiceClientBodyTemplate.cshtml"
      if (param.ModelType.IsPrimaryType(KnownPrimaryType.Credentials))
     {
 
@@ -640,13 +640,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (this.Credentials != null)\n    {\n        this.Credentials.InitializeServiceClient(this);\n    }\n");
-#line 232 "ServiceClientBodyTemplate.cshtml"
+#line 233 "ServiceClientBodyTemplate.cshtml"
     }
 
 #line default
 #line hidden
 
-#line 232 "ServiceClientBodyTemplate.cshtml"
+#line 233 "ServiceClientBodyTemplate.cshtml"
      
 }
 
@@ -654,26 +654,26 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("}\n");
-#line 235 "ServiceClientBodyTemplate.cshtml"
+#line 236 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 236 "ServiceClientBodyTemplate.cshtml"
+#line 237 "ServiceClientBodyTemplate.cshtml"
 
 
 #line default
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 238 "ServiceClientBodyTemplate.cshtml"
+#line 239 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n");
-#line 240 "ServiceClientBodyTemplate.cshtml"
+#line 241 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -681,19 +681,19 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("/// <param name=\'");
-#line 242 "ServiceClientBodyTemplate.cshtml"
+#line 243 "ServiceClientBodyTemplate.cshtml"
                Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\'>\n/// Required. ");
-#line 243 "ServiceClientBodyTemplate.cshtml"
+#line 244 "ServiceClientBodyTemplate.cshtml"
             Write(param.Documentation);
 
 #line default
 #line hidden
             WriteLiteral("\n/// </param>\n");
-#line 245 "ServiceClientBodyTemplate.cshtml"
+#line 246 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
@@ -709,25 +709,25 @@ foreach (var param in parameters)
 /// Thrown when a required parameter is null
 /// </exception>
 ");
-#line 255 "ServiceClientBodyTemplate.cshtml"
+#line 256 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 255 "ServiceClientBodyTemplate.cshtml"
+#line 256 "ServiceClientBodyTemplate.cshtml"
                              Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(");
-#line 255 "ServiceClientBodyTemplate.cshtml"
+#line 256 "ServiceClientBodyTemplate.cshtml"
                                            Write(Model.RequiredConstructorParameters);
 
 #line default
 #line hidden
             WriteLiteral(", System.Net.Http.HttpClientHandler rootHandler, params System.Net.Http.DelegatingHandler[] handlers) : this(rootHandler, handlers)\n{\n");
-#line 257 "ServiceClientBodyTemplate.cshtml"
+#line 258 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -735,19 +735,19 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (");
-#line 259 "ServiceClientBodyTemplate.cshtml"
+#line 260 "ServiceClientBodyTemplate.cshtml"
       Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(" == null)\n    {\n        throw new System.ArgumentNullException(\"");
-#line 261 "ServiceClientBodyTemplate.cshtml"
+#line 262 "ServiceClientBodyTemplate.cshtml"
                                               Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\");\n    }\n");
-#line 263 "ServiceClientBodyTemplate.cshtml"
+#line 264 "ServiceClientBodyTemplate.cshtml"
 }
 foreach (var param in parameters)
 {
@@ -756,25 +756,25 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    this.");
-#line 266 "ServiceClientBodyTemplate.cshtml"
+#line 267 "ServiceClientBodyTemplate.cshtml"
        Write(param.Name);
 
 #line default
 #line hidden
             WriteLiteral(" = ");
-#line 266 "ServiceClientBodyTemplate.cshtml"
+#line 267 "ServiceClientBodyTemplate.cshtml"
                        Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 267 "ServiceClientBodyTemplate.cshtml"
+#line 268 "ServiceClientBodyTemplate.cshtml"
     
 
 #line default
 #line hidden
 
-#line 267 "ServiceClientBodyTemplate.cshtml"
+#line 268 "ServiceClientBodyTemplate.cshtml"
      if (param.ModelType.IsPrimaryType(KnownPrimaryType.Credentials))
     {
 
@@ -782,13 +782,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (this.Credentials != null)\n    {\n        this.Credentials.InitializeServiceClient(this);\n    }\n");
-#line 273 "ServiceClientBodyTemplate.cshtml"
+#line 274 "ServiceClientBodyTemplate.cshtml"
     }
 
 #line default
 #line hidden
 
-#line 273 "ServiceClientBodyTemplate.cshtml"
+#line 274 "ServiceClientBodyTemplate.cshtml"
      
 }
 
@@ -796,13 +796,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("}\n");
-#line 276 "ServiceClientBodyTemplate.cshtml"
+#line 277 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 277 "ServiceClientBodyTemplate.cshtml"
+#line 278 "ServiceClientBodyTemplate.cshtml"
 
 if(!Model.IsCustomBaseUri)
 { 
@@ -811,13 +811,13 @@ if(!Model.IsCustomBaseUri)
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 281 "ServiceClientBodyTemplate.cshtml"
+#line 282 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n/// <param name=\'baseUri\'>\n/// Optional. The base URI of the service.\n/// </param>\n");
-#line 286 "ServiceClientBodyTemplate.cshtml"
+#line 287 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -825,44 +825,44 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("/// <param name=\'");
-#line 288 "ServiceClientBodyTemplate.cshtml"
+#line 289 "ServiceClientBodyTemplate.cshtml"
                Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\'>\n/// Required. ");
-#line 289 "ServiceClientBodyTemplate.cshtml"
+#line 290 "ServiceClientBodyTemplate.cshtml"
             Write(param.Documentation);
 
 #line default
 #line hidden
             WriteLiteral("\n/// </param>\n");
-#line 291 "ServiceClientBodyTemplate.cshtml"
+#line 292 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
             WriteLiteral("/// <param name=\'handlers\'>\n/// Optional. The delegating handlers to add to the http client pipeline.\n/// </param>\n/// <exception cref=\"System.ArgumentNullException\">\n/// Thrown when a required parameter is null\n/// </exception>\n");
-#line 298 "ServiceClientBodyTemplate.cshtml"
+#line 299 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 298 "ServiceClientBodyTemplate.cshtml"
+#line 299 "ServiceClientBodyTemplate.cshtml"
                              Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(System.Uri baseUri, ");
-#line 298 "ServiceClientBodyTemplate.cshtml"
+#line 299 "ServiceClientBodyTemplate.cshtml"
                                                                Write(Model.RequiredConstructorParameters);
 
 #line default
 #line hidden
             WriteLiteral(", params System.Net.Http.DelegatingHandler[] handlers) : this(handlers)\n{\n    if (baseUri == null)\n    {\n        throw new System.ArgumentNullException(\"baseUri\");\n    }\n");
-#line 304 "ServiceClientBodyTemplate.cshtml"
+#line 305 "ServiceClientBodyTemplate.cshtml"
     foreach (var param in parameters)
     {
 
@@ -870,19 +870,19 @@ Write(Model.ConstructorVisibility);
 #line hidden
 
             WriteLiteral("    if (");
-#line 306 "ServiceClientBodyTemplate.cshtml"
+#line 307 "ServiceClientBodyTemplate.cshtml"
       Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(" == null)\n    {\n        throw new System.ArgumentNullException(\"");
-#line 308 "ServiceClientBodyTemplate.cshtml"
+#line 309 "ServiceClientBodyTemplate.cshtml"
                                               Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\");\n    }\n");
-#line 310 "ServiceClientBodyTemplate.cshtml"
+#line 311 "ServiceClientBodyTemplate.cshtml"
 }
 
 
@@ -890,7 +890,7 @@ Write(Model.ConstructorVisibility);
 #line hidden
 
             WriteLiteral("    this.BaseUri = baseUri;\n");
-#line 313 "ServiceClientBodyTemplate.cshtml"
+#line 314 "ServiceClientBodyTemplate.cshtml"
 
 foreach (var param in parameters)
 {
@@ -899,25 +899,25 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    this.");
-#line 316 "ServiceClientBodyTemplate.cshtml"
+#line 317 "ServiceClientBodyTemplate.cshtml"
        Write(param.Name);
 
 #line default
 #line hidden
             WriteLiteral(" = ");
-#line 316 "ServiceClientBodyTemplate.cshtml"
+#line 317 "ServiceClientBodyTemplate.cshtml"
                        Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 317 "ServiceClientBodyTemplate.cshtml"
+#line 318 "ServiceClientBodyTemplate.cshtml"
 
 
 #line default
 #line hidden
 
-#line 318 "ServiceClientBodyTemplate.cshtml"
+#line 319 "ServiceClientBodyTemplate.cshtml"
  if (param.ModelType.IsPrimaryType(KnownPrimaryType.Credentials))
 {
 
@@ -925,13 +925,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (this.Credentials != null)\n    {\n        this.Credentials.InitializeServiceClient(this);\n    }\n");
-#line 324 "ServiceClientBodyTemplate.cshtml"
+#line 325 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 324 "ServiceClientBodyTemplate.cshtml"
+#line 325 "ServiceClientBodyTemplate.cshtml"
  
 }
 
@@ -939,26 +939,26 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("}\n");
-#line 327 "ServiceClientBodyTemplate.cshtml"
+#line 328 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 328 "ServiceClientBodyTemplate.cshtml"
+#line 329 "ServiceClientBodyTemplate.cshtml"
         
 
 #line default
 #line hidden
 
             WriteLiteral("/// <summary>\n/// Initializes a new instance of the ");
-#line 330 "ServiceClientBodyTemplate.cshtml"
+#line 331 "ServiceClientBodyTemplate.cshtml"
                                    Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" class.\n/// </summary>\n/// <param name=\'baseUri\'>\n/// Optional. The base URI of the service.\n/// </param>\n");
-#line 335 "ServiceClientBodyTemplate.cshtml"
+#line 336 "ServiceClientBodyTemplate.cshtml"
 foreach (var param in parameters)
 {
 
@@ -966,19 +966,19 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("/// <param name=\'");
-#line 337 "ServiceClientBodyTemplate.cshtml"
+#line 338 "ServiceClientBodyTemplate.cshtml"
                Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\'>\n/// Required. ");
-#line 338 "ServiceClientBodyTemplate.cshtml"
+#line 339 "ServiceClientBodyTemplate.cshtml"
             Write(param.Documentation);
 
 #line default
 #line hidden
             WriteLiteral("\n/// </param>\n");
-#line 340 "ServiceClientBodyTemplate.cshtml"
+#line 341 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
@@ -994,25 +994,25 @@ foreach (var param in parameters)
 /// Thrown when a required parameter is null
 /// </exception>
 ");
-#line 350 "ServiceClientBodyTemplate.cshtml"
+#line 351 "ServiceClientBodyTemplate.cshtml"
 Write(Model.ConstructorVisibility);
 
 #line default
 #line hidden
             WriteLiteral(" ");
-#line 350 "ServiceClientBodyTemplate.cshtml"
+#line 351 "ServiceClientBodyTemplate.cshtml"
                              Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral("(System.Uri baseUri, ");
-#line 350 "ServiceClientBodyTemplate.cshtml"
+#line 351 "ServiceClientBodyTemplate.cshtml"
                                                                Write(Model.RequiredConstructorParameters);
 
 #line default
 #line hidden
             WriteLiteral(", System.Net.Http.HttpClientHandler rootHandler, params System.Net.Http.DelegatingHandler[] handlers) : this(rootHandler, handlers)\n{\n    if (baseUri == null)\n    {\n        throw new System.ArgumentNullException(\"baseUri\");\n    }\n");
-#line 356 "ServiceClientBodyTemplate.cshtml"
+#line 357 "ServiceClientBodyTemplate.cshtml"
 
 foreach (var param in parameters)
 {
@@ -1021,19 +1021,19 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (");
-#line 359 "ServiceClientBodyTemplate.cshtml"
+#line 360 "ServiceClientBodyTemplate.cshtml"
       Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(" == null)\n    {\n        throw new System.ArgumentNullException(\"");
-#line 361 "ServiceClientBodyTemplate.cshtml"
+#line 362 "ServiceClientBodyTemplate.cshtml"
                                               Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral("\");\n    }\n");
-#line 363 "ServiceClientBodyTemplate.cshtml"
+#line 364 "ServiceClientBodyTemplate.cshtml"
 }
 
 
@@ -1041,7 +1041,7 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    this.BaseUri = baseUri;\n");
-#line 366 "ServiceClientBodyTemplate.cshtml"
+#line 367 "ServiceClientBodyTemplate.cshtml"
 
 foreach (var param in parameters)
 {
@@ -1050,25 +1050,25 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    this.");
-#line 369 "ServiceClientBodyTemplate.cshtml"
+#line 370 "ServiceClientBodyTemplate.cshtml"
        Write(param.Name);
 
 #line default
 #line hidden
             WriteLiteral(" = ");
-#line 369 "ServiceClientBodyTemplate.cshtml"
+#line 370 "ServiceClientBodyTemplate.cshtml"
                        Write(param.Name.ToCamelCase());
 
 #line default
 #line hidden
             WriteLiteral(";\n");
-#line 370 "ServiceClientBodyTemplate.cshtml"
+#line 371 "ServiceClientBodyTemplate.cshtml"
 
 
 #line default
 #line hidden
 
-#line 371 "ServiceClientBodyTemplate.cshtml"
+#line 372 "ServiceClientBodyTemplate.cshtml"
  if (param.ModelType.IsPrimaryType(KnownPrimaryType.Credentials))
 {
 
@@ -1076,13 +1076,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("    if (this.Credentials != null)\n    {\n        this.Credentials.InitializeServiceClient(this);\n    }\n");
-#line 377 "ServiceClientBodyTemplate.cshtml"
+#line 378 "ServiceClientBodyTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 377 "ServiceClientBodyTemplate.cshtml"
+#line 378 "ServiceClientBodyTemplate.cshtml"
  
 }
 
@@ -1090,13 +1090,13 @@ foreach (var param in parameters)
 #line hidden
 
             WriteLiteral("}\n");
-#line 380 "ServiceClientBodyTemplate.cshtml"
+#line 381 "ServiceClientBodyTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
             WriteLiteral("\n");
-#line 381 "ServiceClientBodyTemplate.cshtml"
+#line 382 "ServiceClientBodyTemplate.cshtml"
 }
 }
 

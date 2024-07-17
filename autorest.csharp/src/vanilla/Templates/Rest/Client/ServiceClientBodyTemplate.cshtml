@@ -55,8 +55,9 @@ public Newtonsoft.Json.JsonSerializerSettings DeserializationSettings { get; pri
 /// HttpClient to be used
 /// </param>
 [Microsoft.Extensions.DependencyInjection.ActivatorUtilitiesConstructor]
-@(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility) @(Model.Name)(System.Net.Http.HttpClient httpClient) : this(httpClient, true)
+@(Model.ContainsCredentials ? "protected" : Model.ConstructorVisibility) @(Model.Name)(System.Net.Http.HttpClient httpClient) : base(httpClient, true)
 {
+    this.Initialize();
 }
 @EmptyLine
 
