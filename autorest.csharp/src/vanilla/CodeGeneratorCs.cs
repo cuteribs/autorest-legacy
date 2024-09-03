@@ -73,10 +73,6 @@ namespace AutoRest.CSharp
                         new MethodGroupInterfaceTemplate { Model = methodGroup },
                         $"{GeneratedSourcesBaseFolder}{InterfaceFolder}/I{methodGroup.TypeName}{ImplementationFileExtension}");
                 }
-
-                // Extensions
-                await Write(new ExtensionsTemplate { Model = methodGroup },
-                    $"{GeneratedSourcesBaseFolder}{methodGroup.ExtensionTypeName}Extensions{ImplementationFileExtension}");
             }
         }
 

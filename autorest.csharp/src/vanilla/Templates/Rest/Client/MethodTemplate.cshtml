@@ -75,3 +75,62 @@
             throw new System.NotImplementedException();
     }
 }
+
+@{
+if (!String.IsNullOrEmpty(Model.Description) || !String.IsNullOrEmpty(Model.Summary))
+{
+@:/// <summary>
+@:@WrapComment("/// ", String.IsNullOrEmpty(Model.Summary) ? Model.Description.EscapeXmlComment() : Model.Summary.EscapeXmlComment())
+    if (!String.IsNullOrEmpty(Model.ExternalDocsUrl))
+    {
+@:/// <see href="@Model.ExternalDocsUrl" />
+    }
+@:/// </summary>
+}
+if (!String.IsNullOrEmpty(Model.Description) && !String.IsNullOrEmpty(Model.Summary))
+{
+@:/// <remarks>
+@:@WrapComment("/// ", Model.Description.EscapeXmlComment())
+@:/// </remarks>
+}
+foreach (ParameterCs parameter in Model.LocalParameters)
+{
+@:/// <param name='@parameter.Name'>
+@:@WrapComment("/// ", parameter.DocumentationString.EscapeXmlComment())
+@:/// </param>
+}
+@:/// <param name='cancellationToken'>
+@:/// The cancellation token.
+@:/// </param>
+@(Model.GetObsoleteAttribute())
+@:@((Model as MethodCs).AccessModifier) async @Model.TaskExtensionReturnTypeString @(Model.Name)Async(@Model.GetAsyncMethodParameterDeclaration())
+@:{
+    if (Model.ReturnType.Body != null)
+    {
+        if (Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream))
+        {
+    @:var _result = await this.@(Model.Name)WithHttpMessagesAsync(@(Model.GetAsyncMethodInvocationArgs("null"))).ConfigureAwait(false);
+    @:_result.Request.Dispose();
+    @:return _result.Body;
+        }
+        else
+        {
+    @:using (var _result = await this.@(Model.Name)WithHttpMessagesAsync(@(Model.GetAsyncMethodInvocationArgs("null"))).ConfigureAwait(false))
+    @:{
+    @:    return _result.Body;
+    @:}
+        }
+    }
+    else if (Model.ReturnType.Headers != null)
+    {
+    @:using (var _result = await this.@(Model.Name)WithHttpMessagesAsync(@(Model.GetAsyncMethodInvocationArgs("null"))).ConfigureAwait(false))
+    @:{
+    @:    return _result.Headers;
+    @:}
+    }
+    else
+    {
+    @:(await this.@(Model.Name)WithHttpMessagesAsync(@(Model.GetAsyncMethodInvocationArgs("null"))).ConfigureAwait(false)).Dispose();
+    }
+@:}
+}

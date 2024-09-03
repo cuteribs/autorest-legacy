@@ -276,6 +276,118 @@ Write(EmptyLine);
 #line hidden
             WriteLiteral(");\n");
 #line 73 "MethodGroupInterfaceTemplate.cshtml"
+        
+
+#line default
+#line hidden
+
+#line 73 "MethodGroupInterfaceTemplate.cshtml"
+   Write(EmptyLine);
+
+#line default
+#line hidden
+#line 73 "MethodGroupInterfaceTemplate.cshtml"
+                  
+        
+        if (!String.IsNullOrEmpty(method.Description) || !String.IsNullOrEmpty(method.Summary))
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <summary>\n        ");
+#line 78 "MethodGroupInterfaceTemplate.cshtml"
+     Write(WrapComment("/// ", String.IsNullOrEmpty(method.Summary) ? method.Description.EscapeXmlComment() : method.Summary.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n        /// </summary>\n");
+#line 80 "MethodGroupInterfaceTemplate.cshtml"
+        }
+        if (!String.IsNullOrEmpty(method.Description) && !String.IsNullOrEmpty(method.Summary))
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <remarks>\n        ");
+#line 84 "MethodGroupInterfaceTemplate.cshtml"
+     Write(WrapComment("/// ", method.Description.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n        /// </remarks>\n");
+#line 86 "MethodGroupInterfaceTemplate.cshtml"
+        }
+        foreach (ParameterCs parameter in method.LocalParameters)
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <param name=\'");
+#line 89 "MethodGroupInterfaceTemplate.cshtml"
+                      Write(parameter.Name);
+
+#line default
+#line hidden
+            WriteLiteral("\'>\n        ");
+#line 90 "MethodGroupInterfaceTemplate.cshtml"
+     Write(WrapComment("/// ", parameter.DocumentationString.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n        /// </param>\n");
+#line 92 "MethodGroupInterfaceTemplate.cshtml"
+        }
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <param name=\'cancellationToken\'>\n        /// The cancellation token.\n        /// </param>\n        ");
+#line 96 "MethodGroupInterfaceTemplate.cshtml"
+      Write(method.GetObsoleteAttribute());
+
+#line default
+#line hidden
+            WriteLiteral("\n        ");
+#line 97 "MethodGroupInterfaceTemplate.cshtml"
+      Write(method.TaskExtensionReturnTypeString);
+
+#line default
+#line hidden
+            WriteLiteral(" ");
+#line 97 "MethodGroupInterfaceTemplate.cshtml"
+                                              Write(method.Name);
+
+#line default
+#line hidden
+            WriteLiteral("Async(");
+#line 97 "MethodGroupInterfaceTemplate.cshtml"
+                                                                  Write(method.GetAsyncMethodParameterDeclaration());
+
+#line default
+#line hidden
+            WriteLiteral(");\n");
+#line 98 "MethodGroupInterfaceTemplate.cshtml"
+        
+
+#line default
+#line hidden
+
+#line 98 "MethodGroupInterfaceTemplate.cshtml"
+   Write(EmptyLine);
+
+#line default
+#line hidden
+#line 98 "MethodGroupInterfaceTemplate.cshtml"
+                  
+
+#line default
+#line hidden
+
+            WriteLiteral("        \n");
+#line 100 "MethodGroupInterfaceTemplate.cshtml"
     }
 
 #line default

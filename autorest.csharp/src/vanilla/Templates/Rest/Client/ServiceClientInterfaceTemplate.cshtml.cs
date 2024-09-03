@@ -371,44 +371,150 @@ Write(WrapComment("/// ", Model.Documentation.EscapeXmlComment()));
 #line default
 #line hidden
 
-            WriteLiteral("        /// <param name=\'customHeaders\'>\n        /// The headers that will be added to request.\n        /// </param>\n        /// <param name=\'cancellationToken\'>\n        /// The cancellation token.\n        /// </param>\n        System.Threading.Tasks.Task<");
+            WriteLiteral("        /// <param name=\'customHeaders\'>\n        /// The headers that will be added to request.\n        /// </param>\n        /// <param name=\'cancellationToken\'>\n        /// The cancellation token.\n        /// </param>\n        ");
 #line 100 "ServiceClientInterfaceTemplate.cshtml"
+      Write(method.GetObsoleteAttribute());
+
+#line default
+#line hidden
+            WriteLiteral("\n        System.Threading.Tasks.Task<");
+#line 101 "ServiceClientInterfaceTemplate.cshtml"
                                   Write(method.OperationResponseReturnTypeString);
 
 #line default
 #line hidden
             WriteLiteral("> ");
-#line 100 "ServiceClientInterfaceTemplate.cshtml"
+#line 101 "ServiceClientInterfaceTemplate.cshtml"
                                                                                Write(method.Name);
 
 #line default
 #line hidden
             WriteLiteral("WithHttpMessagesAsync(");
-#line 100 "ServiceClientInterfaceTemplate.cshtml"
+#line 101 "ServiceClientInterfaceTemplate.cshtml"
                                                                                                                    Write(method.GetAsyncMethodParameterDeclaration(true));
 
 #line default
 #line hidden
             WriteLiteral(");\n");
-#line 101 "ServiceClientInterfaceTemplate.cshtml"
+#line 102 "ServiceClientInterfaceTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 101 "ServiceClientInterfaceTemplate.cshtml"
+#line 102 "ServiceClientInterfaceTemplate.cshtml"
    Write(EmptyLine);
 
 #line default
 #line hidden
-#line 101 "ServiceClientInterfaceTemplate.cshtml"
+#line 102 "ServiceClientInterfaceTemplate.cshtml"
                   
 
 #line default
 #line hidden
 
             WriteLiteral("        \n");
-#line 103 "ServiceClientInterfaceTemplate.cshtml"
+#line 104 "ServiceClientInterfaceTemplate.cshtml"
+        
+        if (!String.IsNullOrEmpty(method.Description) || !String.IsNullOrEmpty(method.Summary))
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <summary>\n        ");
+#line 108 "ServiceClientInterfaceTemplate.cshtml"
+     Write(WrapComment("/// ", String.IsNullOrEmpty(method.Summary) ? method.Description.EscapeXmlComment() : method.Summary.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n        /// </summary>\n");
+#line 110 "ServiceClientInterfaceTemplate.cshtml"
+        }
+        if (!String.IsNullOrEmpty(method.Description) && !String.IsNullOrEmpty(method.Summary))
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <remarks>\n        ");
+#line 114 "ServiceClientInterfaceTemplate.cshtml"
+     Write(WrapComment("/// ", method.Description.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n        /// </remarks>\n");
+#line 116 "ServiceClientInterfaceTemplate.cshtml"
+        }
+        foreach (ParameterCs parameter in method.LocalParameters)
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <param name=\'");
+#line 119 "ServiceClientInterfaceTemplate.cshtml"
+                      Write(parameter.Name);
+
+#line default
+#line hidden
+            WriteLiteral("\'>\n        ");
+#line 120 "ServiceClientInterfaceTemplate.cshtml"
+     Write(WrapComment("/// ", parameter.DocumentationString.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n        /// </param>\n");
+#line 122 "ServiceClientInterfaceTemplate.cshtml"
+        }
+
+#line default
+#line hidden
+
+            WriteLiteral("        /// <param name=\'cancellationToken\'>\n        /// The cancellation token.\n        /// </param>\n        ");
+#line 126 "ServiceClientInterfaceTemplate.cshtml"
+      Write(method.GetObsoleteAttribute());
+
+#line default
+#line hidden
+            WriteLiteral("\n        ");
+#line 127 "ServiceClientInterfaceTemplate.cshtml"
+      Write(method.TaskExtensionReturnTypeString);
+
+#line default
+#line hidden
+            WriteLiteral(" ");
+#line 127 "ServiceClientInterfaceTemplate.cshtml"
+                                              Write(method.Name);
+
+#line default
+#line hidden
+            WriteLiteral("Async(");
+#line 127 "ServiceClientInterfaceTemplate.cshtml"
+                                                                  Write(method.GetAsyncMethodParameterDeclaration());
+
+#line default
+#line hidden
+            WriteLiteral(");\n");
+#line 128 "ServiceClientInterfaceTemplate.cshtml"
+        
+
+#line default
+#line hidden
+
+#line 128 "ServiceClientInterfaceTemplate.cshtml"
+   Write(EmptyLine);
+
+#line default
+#line hidden
+#line 128 "ServiceClientInterfaceTemplate.cshtml"
+                  
+
+#line default
+#line hidden
+
+            WriteLiteral("        \n");
+#line 130 "ServiceClientInterfaceTemplate.cshtml"
     }
 
 #line default

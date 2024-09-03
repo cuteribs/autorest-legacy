@@ -278,7 +278,224 @@ Write(Model.AccessModifier);
 #line default
 #line hidden
 
+            WriteLiteral("}\n\n");
+#line 79 "MethodTemplate.cshtml"
+  
+if (!String.IsNullOrEmpty(Model.Description) || !String.IsNullOrEmpty(Model.Summary))
+{
+
+#line default
+#line hidden
+
+            WriteLiteral("/// <summary>\n");
+#line 83 "MethodTemplate.cshtml"
+Write(WrapComment("/// ", String.IsNullOrEmpty(Model.Summary) ? Model.Description.EscapeXmlComment() : Model.Summary.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n");
+#line 84 "MethodTemplate.cshtml"
+    if (!String.IsNullOrEmpty(Model.ExternalDocsUrl))
+    {
+
+#line default
+#line hidden
+
+            WriteLiteral("/// <see href=\"");
+#line 86 "MethodTemplate.cshtml"
+            Write(Model.ExternalDocsUrl);
+
+#line default
+#line hidden
+            WriteLiteral("\" />\n");
+#line 87 "MethodTemplate.cshtml"
+    }
+
+#line default
+#line hidden
+
+            WriteLiteral("/// </summary>\n");
+#line 89 "MethodTemplate.cshtml"
+}
+if (!String.IsNullOrEmpty(Model.Description) && !String.IsNullOrEmpty(Model.Summary))
+{
+
+#line default
+#line hidden
+
+            WriteLiteral("/// <remarks>\n");
+#line 93 "MethodTemplate.cshtml"
+Write(WrapComment("/// ", Model.Description.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n/// </remarks>\n");
+#line 95 "MethodTemplate.cshtml"
+}
+foreach (ParameterCs parameter in Model.LocalParameters)
+{
+
+#line default
+#line hidden
+
+            WriteLiteral("/// <param name=\'");
+#line 98 "MethodTemplate.cshtml"
+              Write(parameter.Name);
+
+#line default
+#line hidden
+            WriteLiteral("\'>\n");
+#line 99 "MethodTemplate.cshtml"
+Write(WrapComment("/// ", parameter.DocumentationString.EscapeXmlComment()));
+
+#line default
+#line hidden
+            WriteLiteral("\n/// </param>\n");
+#line 101 "MethodTemplate.cshtml"
+}
+
+#line default
+#line hidden
+
+            WriteLiteral("/// <param name=\'cancellationToken\'>\n/// The cancellation token.\n/// </param>\n");
+#line 105 "MethodTemplate.cshtml"
+
+#line default
+#line hidden
+
+#line 105 "MethodTemplate.cshtml"
+Write(Model.GetObsoleteAttribute());
+
+#line default
+#line hidden
+#line 105 "MethodTemplate.cshtml"
+                               
+
+#line default
+#line hidden
+
+#line 106 "MethodTemplate.cshtml"
+Write((Model as MethodCs).AccessModifier);
+
+#line default
+#line hidden
+            WriteLiteral(" async ");
+#line 106 "MethodTemplate.cshtml"
+                                         Write(Model.TaskExtensionReturnTypeString);
+
+#line default
+#line hidden
+            WriteLiteral(" ");
+#line 106 "MethodTemplate.cshtml"
+                                                                               Write(Model.Name);
+
+#line default
+#line hidden
+            WriteLiteral("Async(");
+#line 106 "MethodTemplate.cshtml"
+                                                                                                 Write(Model.GetAsyncMethodParameterDeclaration());
+
+#line default
+#line hidden
+            WriteLiteral(")\n{\n");
+#line 108 "MethodTemplate.cshtml"
+    if (Model.ReturnType.Body != null)
+    {
+        if (Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream))
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("    var _result = await this.");
+#line 112 "MethodTemplate.cshtml"
+                           Write(Model.Name);
+
+#line default
+#line hidden
+            WriteLiteral("WithHttpMessagesAsync(");
+#line 112 "MethodTemplate.cshtml"
+                                                              Write(Model.GetAsyncMethodInvocationArgs("null"));
+
+#line default
+#line hidden
+            WriteLiteral(").ConfigureAwait(false);\n    _result.Request.Dispose();\n    return _result.Body;\n");
+#line 115 "MethodTemplate.cshtml"
+        }
+        else
+        {
+
+#line default
+#line hidden
+
+            WriteLiteral("    using (var _result = await this.");
+#line 118 "MethodTemplate.cshtml"
+                                  Write(Model.Name);
+
+#line default
+#line hidden
+            WriteLiteral("WithHttpMessagesAsync(");
+#line 118 "MethodTemplate.cshtml"
+                                                                     Write(Model.GetAsyncMethodInvocationArgs("null"));
+
+#line default
+#line hidden
+            WriteLiteral(").ConfigureAwait(false))\n    {\n        return _result.Body;\n    }\n");
+#line 122 "MethodTemplate.cshtml"
+        }
+    }
+    else if (Model.ReturnType.Headers != null)
+    {
+
+#line default
+#line hidden
+
+            WriteLiteral("    using (var _result = await this.");
+#line 126 "MethodTemplate.cshtml"
+                                  Write(Model.Name);
+
+#line default
+#line hidden
+            WriteLiteral("WithHttpMessagesAsync(");
+#line 126 "MethodTemplate.cshtml"
+                                                                     Write(Model.GetAsyncMethodInvocationArgs("null"));
+
+#line default
+#line hidden
+            WriteLiteral(").ConfigureAwait(false))\n    {\n        return _result.Headers;\n    }\n");
+#line 130 "MethodTemplate.cshtml"
+    }
+    else
+    {
+
+#line default
+#line hidden
+
+            WriteLiteral("    (await this.");
+#line 133 "MethodTemplate.cshtml"
+              Write(Model.Name);
+
+#line default
+#line hidden
+            WriteLiteral("WithHttpMessagesAsync(");
+#line 133 "MethodTemplate.cshtml"
+                                                 Write(Model.GetAsyncMethodInvocationArgs("null"));
+
+#line default
+#line hidden
+            WriteLiteral(").ConfigureAwait(false)).Dispose();\n");
+#line 134 "MethodTemplate.cshtml"
+    }
+
+#line default
+#line hidden
+
             WriteLiteral("}\n");
+#line 136 "MethodTemplate.cshtml"
+
+#line default
+#line hidden
+
         }
         #pragma warning restore 1998
     }
