@@ -44,38 +44,38 @@ Write(Header("// "));
 
 #line default
 #line hidden
-            WriteLiteral("\n");
+            WriteLiteral("\r\n");
 #line 7 "ServiceClientTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral("\nusing Microsoft.Rest;\nusing ");
-#line 9 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\nusing Microsoft.Rest;\r\nusing System.Linq;\r\nusing ");
+#line 10 "ServiceClientTemplate.cshtml"
   Write(Settings.Namespace);
 
 #line default
 #line hidden
             WriteLiteral(".");
-#line 9 "ServiceClientTemplate.cshtml"
+#line 10 "ServiceClientTemplate.cshtml"
                         Write(Settings.InterfaceFolder);
 
 #line default
 #line hidden
-            WriteLiteral(";\n");
-#line 10 "ServiceClientTemplate.cshtml"
+            WriteLiteral(";\r\n");
+#line 11 "ServiceClientTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral("\nnamespace ");
-#line 11 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\nnamespace ");
+#line 12 "ServiceClientTemplate.cshtml"
      Write(Settings.Namespace);
 
 #line default
 #line hidden
-            WriteLiteral("\n{\n");
-#line 13 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n{\r\n");
+#line 14 "ServiceClientTemplate.cshtml"
  foreach (var usingString in Model.Usings)
 {
 
@@ -83,70 +83,70 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("    using ");
-#line 15 "ServiceClientTemplate.cshtml"
+#line 16 "ServiceClientTemplate.cshtml"
        Write(usingString);
 
 #line default
 #line hidden
-            WriteLiteral(";\n");
-#line 16 "ServiceClientTemplate.cshtml"
+            WriteLiteral(";\r\n");
+#line 17 "ServiceClientTemplate.cshtml"
 }
 
 #line default
 #line hidden
 
-#line 17 "ServiceClientTemplate.cshtml"
+#line 18 "ServiceClientTemplate.cshtml"
 Write(EmptyLine);
 
 #line default
 #line hidden
-            WriteLiteral("\n");
-#line 18 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n");
+#line 19 "ServiceClientTemplate.cshtml"
     
 
 #line default
 #line hidden
 
-#line 18 "ServiceClientTemplate.cshtml"
+#line 19 "ServiceClientTemplate.cshtml"
      if (!string.IsNullOrWhiteSpace(Model.Documentation))
     {
 
 #line default
 #line hidden
 
-            WriteLiteral("    /// <summary>\n    ");
-#line 21 "ServiceClientTemplate.cshtml"
+            WriteLiteral("    /// <summary>\r\n    ");
+#line 22 "ServiceClientTemplate.cshtml"
  Write(WrapComment("/// ", Model.Documentation.EscapeXmlComment()));
 
 #line default
 #line hidden
-            WriteLiteral("\n    /// </summary>\n");
-#line 23 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n    /// </summary>\r\n");
+#line 24 "ServiceClientTemplate.cshtml"
     }
 
 #line default
 #line hidden
 
-            WriteLiteral("\n    public partial class ");
-#line 25 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n    public partial class ");
+#line 26 "ServiceClientTemplate.cshtml"
                     Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(" : Microsoft.Rest.ServiceClient<");
-#line 25 "ServiceClientTemplate.cshtml"
+#line 26 "ServiceClientTemplate.cshtml"
                                                                Write(Model.Name);
 
 #line default
 #line hidden
             WriteLiteral(">, I");
-#line 25 "ServiceClientTemplate.cshtml"
+#line 26 "ServiceClientTemplate.cshtml"
                                                                                Write(Model.Name);
 
 #line default
 #line hidden
-            WriteLiteral("\n    {\n        ");
-#line 27 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n    {\r\n        ");
+#line 28 "ServiceClientTemplate.cshtml"
     Write(Include(new ServiceClientBodyTemplate(), Model));
 
 #line default
@@ -164,13 +164,13 @@ Write(EmptyLine);
         private void Initialize()
         {
 ");
-#line 39 "ServiceClientTemplate.cshtml"
+#line 40 "ServiceClientTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 39 "ServiceClientTemplate.cshtml"
+#line 40 "ServiceClientTemplate.cshtml"
          foreach (var operation in Model.AllOperations) 
         {
 
@@ -178,32 +178,32 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("            this.");
-#line 41 "ServiceClientTemplate.cshtml"
+#line 42 "ServiceClientTemplate.cshtml"
                Write(operation.NameForProperty);
 
 #line default
 #line hidden
             WriteLiteral(" = new ");
-#line 41 "ServiceClientTemplate.cshtml"
+#line 42 "ServiceClientTemplate.cshtml"
                                                   Write(operation.TypeName);
 
 #line default
 #line hidden
-            WriteLiteral("(this);\n");
-#line 42 "ServiceClientTemplate.cshtml"
+            WriteLiteral("(this);\r\n");
+#line 43 "ServiceClientTemplate.cshtml"
         }
 
 #line default
 #line hidden
 
-            WriteLiteral("\n");
-#line 44 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n");
+#line 45 "ServiceClientTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 44 "ServiceClientTemplate.cshtml"
+#line 45 "ServiceClientTemplate.cshtml"
          if (Model.IsCustomBaseUri)
         {
 
@@ -211,13 +211,13 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("            this.BaseUri = \"");
-#line 46 "ServiceClientTemplate.cshtml"
+#line 47 "ServiceClientTemplate.cshtml"
                          Write(Model.BaseUrl);
 
 #line default
 #line hidden
-            WriteLiteral("\";\n");
-#line 47 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\";\r\n");
+#line 48 "ServiceClientTemplate.cshtml"
         }
         else
         {
@@ -226,26 +226,26 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("            this.BaseUri = new System.Uri(\"");
-#line 50 "ServiceClientTemplate.cshtml"
+#line 51 "ServiceClientTemplate.cshtml"
                                         Write(Model.BaseUrl);
 
 #line default
 #line hidden
-            WriteLiteral("\");\n");
-#line 51 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\");\r\n");
+#line 52 "ServiceClientTemplate.cshtml"
         }
 
 #line default
 #line hidden
 
-            WriteLiteral("\n");
-#line 53 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n");
+#line 54 "ServiceClientTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 53 "ServiceClientTemplate.cshtml"
+#line 54 "ServiceClientTemplate.cshtml"
          foreach (var property in Model.Properties.Where(p => !p.DefaultValue.IsNullOrEmpty()))
         {
 
@@ -253,19 +253,19 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("            this.");
-#line 55 "ServiceClientTemplate.cshtml"
+#line 56 "ServiceClientTemplate.cshtml"
                Write(property.Name);
 
 #line default
 #line hidden
             WriteLiteral(" = ");
-#line 55 "ServiceClientTemplate.cshtml"
+#line 56 "ServiceClientTemplate.cshtml"
                                   Write(property.DefaultValue);
 
 #line default
 #line hidden
-            WriteLiteral(";\n");
-#line 56 "ServiceClientTemplate.cshtml"
+            WriteLiteral(";\r\n");
+#line 57 "ServiceClientTemplate.cshtml"
         }
 
 #line default
@@ -286,21 +286,21 @@ Write(EmptyLine);
                     }
             };
 ");
-#line 71 "ServiceClientTemplate.cshtml"
+#line 72 "ServiceClientTemplate.cshtml"
             
 
 #line default
 #line hidden
 
-#line 71 "ServiceClientTemplate.cshtml"
+#line 72 "ServiceClientTemplate.cshtml"
              if (Model.NeedsTransformationConverter)
             {
 
 #line default
 #line hidden
 
-            WriteLiteral("            SerializationSettings.Converters.Add(new Microsoft.Rest.Serialization.TransformationJsonConverter());\n");
-#line 74 "ServiceClientTemplate.cshtml"
+            WriteLiteral("            SerializationSettings.Converters.Add(new Microsoft.Rest.Serialization.TransformationJsonConverter());\r\n");
+#line 75 "ServiceClientTemplate.cshtml"
             }
 
 #line default
@@ -319,13 +319,13 @@ Write(EmptyLine);
                     }
             };
 ");
-#line 87 "ServiceClientTemplate.cshtml"
+#line 88 "ServiceClientTemplate.cshtml"
             
 
 #line default
 #line hidden
 
-#line 87 "ServiceClientTemplate.cshtml"
+#line 88 "ServiceClientTemplate.cshtml"
              foreach (var polymorphicType in Model.ModelTypes.Where(t => t.IsPolymorphic))
             {
 
@@ -333,65 +333,65 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("            SerializationSettings.Converters.Add(new Microsoft.Rest.Serialization.PolymorphicSerializeJsonConverter<");
-#line 89 "ServiceClientTemplate.cshtml"
+#line 90 "ServiceClientTemplate.cshtml"
                                                                                                                   Write(polymorphicType.Name);
 
 #line default
 #line hidden
             WriteLiteral(">(\"");
-#line 89 "ServiceClientTemplate.cshtml"
+#line 90 "ServiceClientTemplate.cshtml"
                                                                                                                                             Write(polymorphicType.PolymorphicDiscriminator);
 
 #line default
 #line hidden
-            WriteLiteral("\"));\n            DeserializationSettings.Converters.Add(new  Microsoft.Rest.Serialization.PolymorphicDeserializeJsonConverter<");
-#line 90 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\"));\r\n            DeserializationSettings.Converters.Add(new  Microsoft.Rest.Serialization.PolymorphicDeserializeJsonConverter<");
+#line 91 "ServiceClientTemplate.cshtml"
                                                                                                                        Write(polymorphicType.Name);
 
 #line default
 #line hidden
             WriteLiteral(">(\"");
-#line 90 "ServiceClientTemplate.cshtml"
+#line 91 "ServiceClientTemplate.cshtml"
                                                                                                                                                  Write(polymorphicType.PolymorphicDiscriminator);
 
 #line default
 #line hidden
-            WriteLiteral("\"));\n");
-#line 91 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\"));\r\n");
+#line 92 "ServiceClientTemplate.cshtml"
             }
 
 #line default
 #line hidden
 
-            WriteLiteral("\n            CustomInitialize();\n            \n");
-#line 95 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n            CustomInitialize();\r\n            \r\n");
+#line 96 "ServiceClientTemplate.cshtml"
             
 
 #line default
 #line hidden
 
-#line 95 "ServiceClientTemplate.cshtml"
+#line 96 "ServiceClientTemplate.cshtml"
              if (Model.NeedsTransformationConverter)
             {
 
 #line default
 #line hidden
 
-            WriteLiteral("            DeserializationSettings.Converters.Add(new Microsoft.Rest.Serialization.TransformationJsonConverter());\n");
-#line 98 "ServiceClientTemplate.cshtml"
+            WriteLiteral("            DeserializationSettings.Converters.Add(new Microsoft.Rest.Serialization.TransformationJsonConverter());\r\n");
+#line 99 "ServiceClientTemplate.cshtml"
             }
 
 #line default
 #line hidden
 
-            WriteLiteral("    \n        }    \n    \n");
-#line 102 "ServiceClientTemplate.cshtml"
+            WriteLiteral("    \r\n        }    \r\n    \r\n");
+#line 103 "ServiceClientTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 102 "ServiceClientTemplate.cshtml"
+#line 103 "ServiceClientTemplate.cshtml"
          foreach (MethodCs method in Model.Methods.Where( m => m.Group.IsNullOrEmpty()))
         {
 
@@ -399,37 +399,37 @@ Write(EmptyLine);
 #line hidden
 
             WriteLiteral("        ");
-#line 104 "ServiceClientTemplate.cshtml"
+#line 105 "ServiceClientTemplate.cshtml"
       Write(Include(new MethodTemplate(), method));
 
 #line default
 #line hidden
-            WriteLiteral("\n");
-#line 105 "ServiceClientTemplate.cshtml"
+            WriteLiteral("\r\n");
+#line 106 "ServiceClientTemplate.cshtml"
         
 
 #line default
 #line hidden
 
-#line 105 "ServiceClientTemplate.cshtml"
+#line 106 "ServiceClientTemplate.cshtml"
    Write(EmptyLine);
 
 #line default
 #line hidden
-#line 105 "ServiceClientTemplate.cshtml"
+#line 106 "ServiceClientTemplate.cshtml"
                   
 
 #line default
 #line hidden
 
-            WriteLiteral("        \n");
-#line 107 "ServiceClientTemplate.cshtml"
+            WriteLiteral("        \r\n");
+#line 108 "ServiceClientTemplate.cshtml"
         }
 
 #line default
 #line hidden
 
-            WriteLiteral("    }\n}");
+            WriteLiteral("    }\r\n}");
         }
         #pragma warning restore 1998
     }
