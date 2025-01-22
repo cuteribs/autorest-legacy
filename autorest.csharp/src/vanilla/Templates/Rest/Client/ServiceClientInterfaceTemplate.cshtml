@@ -97,7 +97,34 @@ namespace @(Settings.Namespace).@(Settings.InterfaceFolder)
         @:/// <param name='cancellationToken'>
         @:/// The cancellation token.
         @:/// </param>
+        @:@(method.GetObsoleteAttribute())
         @:System.Threading.Tasks.Task<@(method.OperationResponseReturnTypeString)> @(method.Name)WithHttpMessagesAsync(@(method.GetAsyncMethodParameterDeclaration(true)));
+        @EmptyLine
+        @:
+        
+        if (!String.IsNullOrEmpty(method.Description) || !String.IsNullOrEmpty(method.Summary))
+        {
+        @:/// <summary>
+        @:@WrapComment("/// ", String.IsNullOrEmpty(method.Summary) ? method.Description.EscapeXmlComment() : method.Summary.EscapeXmlComment())
+        @:/// </summary>
+        }
+        if (!String.IsNullOrEmpty(method.Description) && !String.IsNullOrEmpty(method.Summary))
+        {
+        @:/// <remarks>
+        @:@WrapComment("/// ", method.Description.EscapeXmlComment())
+        @:/// </remarks>
+        }
+        foreach (ParameterCs parameter in method.LocalParameters)
+        {
+        @:/// <param name='@parameter.Name'>
+        @:@WrapComment("/// ", parameter.DocumentationString.EscapeXmlComment())
+        @:/// </param>
+        }
+        @:/// <param name='cancellationToken'>
+        @:/// The cancellation token.
+        @:/// </param>
+        @:@(method.GetObsoleteAttribute())
+        @:@(method.TaskExtensionReturnTypeString) @(method.Name)Async(@(method.GetAsyncMethodParameterDeclaration()));
         @EmptyLine
         @:
     }
