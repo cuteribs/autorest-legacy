@@ -14,7 +14,7 @@ namespace AutoRest.CSharp.Model
             Name.OnGet += v => $"System.Collections.Generic.IEnumerable<{ElementType.AsNullableType(!ElementType.IsValueType() || IsNullable)}>";
         }
 
-        public virtual bool IsNullable => Extensions.Get<bool>("x-nullable") ?? true;
+        public virtual bool IsNullable => Extensions.Get<bool>("x-nullable") == true;
     }
 
     public class DictionaryTypeCs : DictionaryType
@@ -24,6 +24,6 @@ namespace AutoRest.CSharp.Model
             Name.OnGet += v => $"System.Collections.Generic.IDictionary<string, {ValueType.AsNullableType(!ValueType.IsValueType() || IsNullable)}>";
         }
 
-        public virtual bool IsNullable => Extensions.Get<bool>("x-nullable") ?? true;
+        public virtual bool IsNullable => Extensions.Get<bool>("x-nullable") == true;
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@cuteribs/autorest.csharp",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "The C# extension for classic generators in AutoRest.",
   "scripts": {
     "start": "dotnet bin/autorest.csharp.dll --server",
